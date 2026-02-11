@@ -1,0 +1,1255 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { dogFoods } from '../../../data/dog-foods';
+import { dogBreeds } from '../../../data/dog-breeds';
+
+const siteUrl = 'https://mymuttlife.co.uk';
+const canonicalUrl = `${siteUrl}/tools/paw-tracker/`;
+
+const toolSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PawTracker — Dog Nutrition & Activity Tracker",
+  "url": canonicalUrl,
+  "description": "Free interactive nutrition calculator and activity tracker for dogs. Track food, calories, exercise, and get personalised recommendations for your dog.",
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0" }
+};
+---
+
+<BaseLayout
+  title="PawTracker — Free Dog Nutrition & Activity Tracker"
+  description="Track your dog's nutrition, calories, and daily activity for free. Searchable database of 150+ UK dog foods with personalised recommendations. No sign-up required."
+  canonicalUrl={canonicalUrl}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(toolSchema)} />
+
+  <!-- Inject data for client-side use -->
+  <script define:vars={{ dogFoodsJSON: JSON.stringify(dogFoods), dogBreedsJSON: JSON.stringify(dogBreeds) }}>
+    window.__PAW_FOODS = JSON.parse(dogFoodsJSON);
+    window.__PAW_BREEDS = JSON.parse(dogBreedsJSON);
+  </script>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+
+    <!-- Hero Header -->
+    <header class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-bark-800 leading-tight mb-4" style="font-family: var(--font-heading)">
+        🐾 PawTracker
+      </h1>
+      <p class="text-lg text-bark-500 max-w-2xl mx-auto">
+        Track your dog's nutrition and activity — completely free. Over 150 UK dog foods, personalised calorie targets, and daily summaries.
+      </p>
+    </header>
+
+    <!-- ============ DOG PROFILE SECTION ============ -->
+    <section id="profile-section" class="mb-8">
+      <div class="bg-white rounded-2xl border border-bark-200 shadow-sm overflow-hidden">
+        <div class="bg-forest-600 px-6 py-4">
+          <h2 class="text-lg font-bold text-white flex items-center gap-2" style="font-family: var(--font-heading)">
+            <span>🐕</span> <span id="profile-title">Tell Us About Your Dog</span>
+          </h2>
+        </div>
+
+        <!-- Profile Form -->
+        <div id="profile-form" class="p-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label for="dog-name" class="block text-sm font-medium text-bark-700 mb-1">Dog's Name *</label>
+              <input type="text" id="dog-name" placeholder="e.g. Poppy" maxlength="30"
+                class="w-full px-4 py-2.5 rounded-lg border border-bark-300 focus:border-forest-500 focus:ring-2 focus:ring-forest-200 outline-none transition" />
+            </div>
+            <div>
+              <label for="dog-breed" class="block text-sm font-medium text-bark-700 mb-1">Breed *</label>
+              <select id="dog-breed"
+                class="w-full px-4 py-2.5 rounded-lg border border-bark-300 focus:border-forest-500 focus:ring-2 focus:ring-forest-200 outline-none transition bg-white">
+                <option value="">Select breed...</option>
+              </select>
+            </div>
+            <div>
+              <label for="dog-weight" class="block text-sm font-medium text-bark-700 mb-1">Weight (kg) *</label>
+              <input type="number" id="dog-weight" min="0.5" max="120" step="0.5" placeholder="e.g. 28"
+                class="w-full px-4 py-2.5 rounded-lg border border-bark-300 focus:border-forest-500 focus:ring-2 focus:ring-forest-200 outline-none transition" />
+            </div>
+            <div>
+              <label for="dog-age" class="block text-sm font-medium text-bark-700 mb-1">Age (years) *</label>
+              <input type="number" id="dog-age" min="0" max="25" step="0.5" placeholder="e.g. 4"
+                class="w-full px-4 py-2.5 rounded-lg border border-bark-300 focus:border-forest-500 focus:ring-2 focus:ring-forest-200 outline-none transition" />
+            </div>
+            <div class="sm:col-span-2">
+              <label class="block text-sm font-medium text-bark-700 mb-2">Activity Level *</label>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <button type="button" data-activity="low" class="activity-btn p-3 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-center">
+                  <span class="text-xl block">🐌</span>
+                  <span class="text-sm font-medium text-bark-700 block">Low</span>
+                  <span class="text-xs text-bark-400">Couch potato</span>
+                </button>
+                <button type="button" data-activity="medium" class="activity-btn p-3 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-center">
+                  <span class="text-xl block">🐕</span>
+                  <span class="text-sm font-medium text-bark-700 block">Medium</span>
+                  <span class="text-xs text-bark-400">1-2 walks/day</span>
+                </button>
+                <button type="button" data-activity="high" class="activity-btn p-3 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-center">
+                  <span class="text-xl block">🏃</span>
+                  <span class="text-sm font-medium text-bark-700 block">High</span>
+                  <span class="text-xs text-bark-400">Active & energetic</span>
+                </button>
+                <button type="button" data-activity="very-high" class="activity-btn p-3 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-center">
+                  <span class="text-xl block">⚡</span>
+                  <span class="text-sm font-medium text-bark-700 block">Very High</span>
+                  <span class="text-xs text-bark-400">Working/sport dog</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 flex items-center gap-4">
+            <button type="button" id="save-profile-btn"
+              class="bg-forest-600 text-white px-8 py-3 rounded-full font-medium hover:bg-forest-700 transition-colors shadow-sm">
+              Save Profile 🐾
+            </button>
+            <span id="profile-error" class="text-red-600 text-sm hidden"></span>
+          </div>
+        </div>
+
+        <!-- Profile Summary (shown after saving) -->
+        <div id="profile-summary" class="hidden p-6">
+          <div class="flex flex-wrap items-center gap-4 justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-full bg-forest-100 flex items-center justify-center text-2xl">🐾</div>
+              <div>
+                <p class="font-bold text-bark-800 text-lg" id="summary-name" style="font-family: var(--font-heading)"></p>
+                <p class="text-sm text-bark-500" id="summary-details"></p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="text-right">
+                <span class="text-xs text-bark-400 block">Daily target</span>
+                <span class="text-lg font-bold text-forest-700" id="summary-calories">0 kcal</span>
+              </div>
+              <button type="button" id="edit-profile-btn"
+                class="text-sm text-forest-600 hover:text-forest-800 font-medium border border-forest-300 px-3 py-1.5 rounded-full transition-colors">
+                Edit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MAIN TRACKER (hidden until profile saved) ============ -->
+    <div id="tracker-main" class="hidden">
+
+      <!-- Tab Navigation -->
+      <div class="flex gap-1 mb-6 bg-bark-100 rounded-xl p-1 overflow-x-auto">
+        <button type="button" data-tab="nutrition" class="tab-btn flex-1 min-w-0 py-2.5 px-4 rounded-lg text-sm font-medium transition-all whitespace-nowrap text-bark-600 hover:text-bark-800">
+          🥗 Nutrition
+        </button>
+        <button type="button" data-tab="activity" class="tab-btn flex-1 min-w-0 py-2.5 px-4 rounded-lg text-sm font-medium transition-all whitespace-nowrap text-bark-600 hover:text-bark-800">
+          🏃 Activity
+        </button>
+        <button type="button" data-tab="summary" class="tab-btn flex-1 min-w-0 py-2.5 px-4 rounded-lg text-sm font-medium transition-all whitespace-nowrap text-bark-600 hover:text-bark-800">
+          📊 Today
+        </button>
+      </div>
+
+      <!-- ============ NUTRITION TAB ============ -->
+      <div id="tab-nutrition" class="tab-panel">
+
+        <!-- Food Search -->
+        <div class="bg-white rounded-2xl border border-bark-200 shadow-sm p-6 mb-6">
+          <h3 class="text-lg font-bold text-bark-800 mb-4" style="font-family: var(--font-heading)">Add Food 🥗</h3>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+            <div class="sm:col-span-2">
+              <input type="text" id="food-search" placeholder="Search 150+ foods... (e.g. Butternut Box, Orijen, chicken)"
+                class="w-full px-4 py-2.5 rounded-lg border border-bark-300 focus:border-forest-500 focus:ring-2 focus:ring-forest-200 outline-none transition" />
+            </div>
+            <div class="flex gap-2">
+              <select id="food-brand-filter"
+                class="flex-1 px-3 py-2.5 rounded-lg border border-bark-300 focus:border-forest-500 outline-none transition bg-white text-sm">
+                <option value="">All Brands</option>
+              </select>
+              <select id="food-type-filter"
+                class="flex-1 px-3 py-2.5 rounded-lg border border-bark-300 focus:border-forest-500 outline-none transition bg-white text-sm">
+                <option value="">All Types</option>
+                <option value="dry">Dry</option>
+                <option value="wet">Wet</option>
+                <option value="fresh">Fresh</option>
+                <option value="raw">Raw</option>
+                <option value="treats">Treats</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Food Results -->
+          <div id="food-results" class="max-h-80 overflow-y-auto space-y-2 border border-bark-100 rounded-lg p-2 bg-cream-50">
+            <p class="text-center text-bark-400 text-sm py-4">Start typing to search foods...</p>
+          </div>
+        </div>
+
+        <!-- Food Log -->
+        <div class="bg-white rounded-2xl border border-bark-200 shadow-sm p-6">
+          <h3 class="text-lg font-bold text-bark-800 mb-4" style="font-family: var(--font-heading)">Today's Food Log 📝</h3>
+          <div id="food-log">
+            <p class="text-bark-400 text-sm text-center py-6">No food logged yet today. Search and add food above!</p>
+          </div>
+
+          <!-- Nutrition Progress Bars -->
+          <div id="nutrition-bars" class="hidden mt-6 pt-6 border-t border-bark-200">
+            <h4 class="text-sm font-semibold text-bark-700 mb-3 uppercase tracking-wider">Nutrition vs Target</h4>
+            <div class="space-y-3">
+              <div>
+                <div class="flex justify-between text-sm mb-1">
+                  <span class="text-bark-600">Calories</span>
+                  <span id="bar-cal-text" class="font-medium text-bark-700">0 / 0 kcal</span>
+                </div>
+                <div class="w-full bg-bark-100 rounded-full h-3 overflow-hidden">
+                  <div id="bar-cal" class="h-3 rounded-full transition-all duration-500 bg-forest-500" style="width: 0%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm mb-1">
+                  <span class="text-bark-600">Protein</span>
+                  <span id="bar-pro-text" class="font-medium text-bark-700">0g</span>
+                </div>
+                <div class="w-full bg-bark-100 rounded-full h-2.5 overflow-hidden">
+                  <div id="bar-pro" class="h-2.5 rounded-full transition-all duration-500 bg-forest-400" style="width: 0%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm mb-1">
+                  <span class="text-bark-600">Fat</span>
+                  <span id="bar-fat-text" class="font-medium text-bark-700">0g</span>
+                </div>
+                <div class="w-full bg-bark-100 rounded-full h-2.5 overflow-hidden">
+                  <div id="bar-fat" class="h-2.5 rounded-full transition-all duration-500 bg-paw-400" style="width: 0%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm mb-1">
+                  <span class="text-bark-600">Fibre</span>
+                  <span id="bar-fib-text" class="font-medium text-bark-700">0g</span>
+                </div>
+                <div class="w-full bg-bark-100 rounded-full h-2.5 overflow-hidden">
+                  <div id="bar-fib" class="h-2.5 rounded-full transition-all duration-500 bg-cream-500" style="width: 0%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ ACTIVITY TAB ============ -->
+      <div id="tab-activity" class="tab-panel hidden">
+        <div class="bg-white rounded-2xl border border-bark-200 shadow-sm p-6 mb-6">
+          <h3 class="text-lg font-bold text-bark-800 mb-4" style="font-family: var(--font-heading)">Log Activity 🏃</h3>
+
+          <!-- Activity Type Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-5">
+            <button type="button" data-act-type="walk" class="act-type-btn p-3 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-center">
+              <span class="text-2xl block">🚶</span>
+              <span class="text-xs font-medium text-bark-700 block mt-1">Walk</span>
+            </button>
+            <button type="button" data-act-type="run" class="act-type-btn p-3 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-center">
+              <span class="text-2xl block">🏃</span>
+              <span class="text-xs font-medium text-bark-700 block mt-1">Run</span>
+            </button>
+            <button type="button" data-act-type="play" class="act-type-btn p-3 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-center">
+              <span class="text-2xl block">🎾</span>
+              <span class="text-xs font-medium text-bark-700 block mt-1">Play</span>
+            </button>
+            <button type="button" data-act-type="swim" class="act-type-btn p-3 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-center">
+              <span class="text-2xl block">🏊</span>
+              <span class="text-xs font-medium text-bark-700 block mt-1">Swim</span>
+            </button>
+            <button type="button" data-act-type="fetch" class="act-type-btn p-3 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-center">
+              <span class="text-2xl block">🦴</span>
+              <span class="text-xs font-medium text-bark-700 block mt-1">Fetch</span>
+            </button>
+            <button type="button" data-act-type="hike" class="act-type-btn p-3 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-center">
+              <span class="text-2xl block">⛰️</span>
+              <span class="text-xs font-medium text-bark-700 block mt-1">Hike</span>
+            </button>
+            <button type="button" data-act-type="agility" class="act-type-btn p-3 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-center">
+              <span class="text-2xl block">🎪</span>
+              <span class="text-xs font-medium text-bark-700 block mt-1">Agility</span>
+            </button>
+            <button type="button" data-act-type="other" class="act-type-btn p-3 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-center">
+              <span class="text-2xl block">🐾</span>
+              <span class="text-xs font-medium text-bark-700 block mt-1">Other</span>
+            </button>
+          </div>
+
+          <!-- Duration -->
+          <div id="act-duration-section" class="hidden">
+            <label class="block text-sm font-medium text-bark-700 mb-2">Duration</label>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <button type="button" data-dur="15" class="dur-btn px-4 py-2 rounded-full border border-bark-300 text-sm font-medium text-bark-600 hover:border-forest-500 hover:text-forest-700 transition-all">15 min</button>
+              <button type="button" data-dur="30" class="dur-btn px-4 py-2 rounded-full border border-bark-300 text-sm font-medium text-bark-600 hover:border-forest-500 hover:text-forest-700 transition-all">30 min</button>
+              <button type="button" data-dur="45" class="dur-btn px-4 py-2 rounded-full border border-bark-300 text-sm font-medium text-bark-600 hover:border-forest-500 hover:text-forest-700 transition-all">45 min</button>
+              <button type="button" data-dur="60" class="dur-btn px-4 py-2 rounded-full border border-bark-300 text-sm font-medium text-bark-600 hover:border-forest-500 hover:text-forest-700 transition-all">60 min</button>
+              <div class="flex items-center gap-1">
+                <input type="number" id="custom-duration" min="1" max="300" placeholder="Custom"
+                  class="w-20 px-3 py-2 rounded-lg border border-bark-300 focus:border-forest-500 outline-none transition text-sm" />
+                <span class="text-sm text-bark-400">min</span>
+              </div>
+            </div>
+            <div id="act-estimate" class="hidden bg-forest-50 rounded-lg p-3 mb-3">
+              <p class="text-sm text-forest-700">Estimated burn: <strong id="act-cal-estimate">0</strong> kcal</p>
+            </div>
+            <button type="button" id="log-activity-btn"
+              class="bg-forest-600 text-white px-6 py-2.5 rounded-full font-medium hover:bg-forest-700 transition-colors">
+              Log Activity ✅
+            </button>
+          </div>
+        </div>
+
+        <!-- Activity Log -->
+        <div class="bg-white rounded-2xl border border-bark-200 shadow-sm p-6">
+          <h3 class="text-lg font-bold text-bark-800 mb-4" style="font-family: var(--font-heading)">Today's Activities 🐾</h3>
+          <div id="activity-log">
+            <p class="text-bark-400 text-sm text-center py-6">No activities logged today. Select an activity type above!</p>
+          </div>
+          <div id="activity-summary" class="hidden mt-4 pt-4 border-t border-bark-200">
+            <div class="flex justify-between items-center">
+              <span class="text-sm font-medium text-bark-600">Total active time:</span>
+              <span id="total-active-time" class="font-bold text-forest-700">0 min</span>
+            </div>
+            <div class="flex justify-between items-center mt-1">
+              <span class="text-sm font-medium text-bark-600">Total calories burned:</span>
+              <span id="total-calories-burned" class="font-bold text-paw-600">0 kcal</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ DAILY SUMMARY TAB ============ -->
+      <div id="tab-summary" class="tab-panel hidden">
+        <div id="daily-summary-card" class="bg-white rounded-2xl border border-bark-200 shadow-sm overflow-hidden">
+          <!-- Summary Header -->
+          <div class="bg-gradient-to-r from-forest-600 to-forest-700 px-6 py-5 text-white">
+            <h3 class="text-xl font-bold flex items-center gap-2" style="font-family: var(--font-heading)">
+              <span>📊</span> <span id="summary-card-title">Your Dog's Day</span>
+            </h3>
+            <p class="text-forest-200 text-sm mt-1" id="summary-date"></p>
+          </div>
+
+          <div class="p-6">
+            <!-- Calorie Balance -->
+            <div class="grid grid-cols-3 gap-4 mb-6">
+              <div class="text-center p-3 bg-forest-50 rounded-xl">
+                <span class="text-xs text-forest-600 font-medium uppercase tracking-wider block">Eaten</span>
+                <span id="sum-eaten" class="text-2xl font-bold text-forest-800 block mt-1">0</span>
+                <span class="text-xs text-forest-500">kcal</span>
+              </div>
+              <div class="text-center p-3 bg-paw-50 rounded-xl">
+                <span class="text-xs text-paw-600 font-medium uppercase tracking-wider block">Burned</span>
+                <span id="sum-burned" class="text-2xl font-bold text-paw-800 block mt-1">0</span>
+                <span class="text-xs text-paw-500">kcal</span>
+              </div>
+              <div class="text-center p-3 bg-cream-100 rounded-xl">
+                <span class="text-xs text-bark-600 font-medium uppercase tracking-wider block">Target</span>
+                <span id="sum-target" class="text-2xl font-bold text-bark-800 block mt-1">0</span>
+                <span class="text-xs text-bark-500">kcal</span>
+              </div>
+            </div>
+
+            <!-- Progress Ring Visual -->
+            <div class="flex items-center justify-center mb-6">
+              <div class="relative w-36 h-36">
+                <svg class="w-full h-full -rotate-90" viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="52" fill="none" stroke="#e4cdb0" stroke-width="10" />
+                  <circle id="progress-ring" cx="60" cy="60" r="52" fill="none" stroke="#3d8b40" stroke-width="10"
+                    stroke-linecap="round" stroke-dasharray="326.73" stroke-dashoffset="326.73" class="transition-all duration-1000" />
+                </svg>
+                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                  <span id="ring-percent" class="text-2xl font-bold text-bark-800">0%</span>
+                  <span class="text-xs text-bark-400">of target</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Meal breakdown -->
+            <div class="mb-6">
+              <h4 class="text-sm font-semibold text-bark-700 mb-2 uppercase tracking-wider">Meals</h4>
+              <div id="sum-meals" class="space-y-2">
+                <p class="text-bark-400 text-sm">No meals logged today.</p>
+              </div>
+            </div>
+
+            <!-- Activities -->
+            <div class="mb-6">
+              <h4 class="text-sm font-semibold text-bark-700 mb-2 uppercase tracking-wider">Activities</h4>
+              <div id="sum-activities" class="space-y-2">
+                <p class="text-bark-400 text-sm">No activities logged today.</p>
+              </div>
+            </div>
+
+            <!-- Recommendation -->
+            <div id="sum-recommendation" class="hidden bg-gradient-to-r from-forest-50 to-cream-100 rounded-xl p-4 border border-forest-200">
+              <h4 class="text-sm font-semibold text-forest-700 mb-1">💡 Recommendation</h4>
+              <p id="sum-rec-text" class="text-sm text-bark-600"></p>
+              <a id="sum-rec-link" href="#" target="_blank" rel="noopener noreferrer"
+                class="inline-block mt-2 text-sm font-medium text-forest-600 hover:text-forest-800 underline underline-offset-2"></a>
+            </div>
+
+            <!-- Reset day -->
+            <div class="mt-6 pt-4 border-t border-bark-200 text-center">
+              <button type="button" id="reset-day-btn" class="text-sm text-bark-400 hover:text-red-600 transition-colors">
+                🔄 Reset today's data
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Email Capture -->
+        <div id="email-capture" class="mt-6 bg-gradient-to-br from-forest-50 via-cream-50 to-paw-50 rounded-2xl border border-forest-200 p-6">
+          <div class="text-center mb-4">
+            <span class="text-3xl">📧</span>
+            <h3 class="text-lg font-bold text-bark-800 mt-2" style="font-family: var(--font-heading)">
+              Save Your Dog's Profile & Get Weekly Tips
+            </h3>
+            <p class="text-sm text-bark-500 mt-1">
+              Get personalised nutrition tips, product recommendations, and seasonal advice for <span id="email-dog-name">your dog</span> — free every week.
+            </p>
+          </div>
+          <div id="email-form" class="max-w-md mx-auto">
+            <div class="flex flex-col sm:flex-row gap-2">
+              <input type="text" id="email-name" placeholder="Your name"
+                class="flex-1 px-4 py-2.5 rounded-lg border border-bark-300 focus:border-forest-500 focus:ring-2 focus:ring-forest-200 outline-none transition text-sm" />
+              <input type="email" id="email-address" placeholder="your@email.com"
+                class="flex-1 px-4 py-2.5 rounded-lg border border-bark-300 focus:border-forest-500 focus:ring-2 focus:ring-forest-200 outline-none transition text-sm" />
+            </div>
+            <button type="button" id="email-submit-btn"
+              class="w-full mt-3 bg-forest-600 text-white px-6 py-3 rounded-full font-medium hover:bg-forest-700 transition-colors shadow-sm">
+              Get My Free Tips 🐾
+            </button>
+            <p class="text-xs text-bark-400 text-center mt-2">No spam, ever. Unsubscribe anytime. We respect your privacy.</p>
+          </div>
+          <div id="email-success" class="hidden text-center">
+            <span class="text-4xl block mb-2">🎉</span>
+            <p class="font-bold text-forest-700 text-lg">You're in!</p>
+            <p class="text-sm text-bark-500 mt-1">Check your inbox for your dog's personalised nutrition guide.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Affiliate Disclosure -->
+    <div class="mt-8 affiliate-disclosure text-xs">
+      <strong>Affiliate Disclosure:</strong> Some product links on this page are affiliate links. If you purchase through these links, we may earn a small commission at no extra cost to you. This helps us keep PawTracker free!
+      <a href="/affiliate-disclaimer/" class="text-forest-600 underline">Learn more</a>.
+    </div>
+
+    <!-- Related links -->
+    <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <a href="/blog/best-dog-food-labradors-uk/" class="block p-4 bg-white rounded-xl border border-bark-200 hover:border-forest-300 hover:shadow-md transition-all">
+        <span class="text-sm text-forest-600 font-medium">🦮 Dog Nutrition</span>
+        <h3 class="font-bold text-bark-700 mt-1">Best Dog Food for Labradors UK 2026</h3>
+      </a>
+      <a href="/blog/dog-exercise-breed-guide/" class="block p-4 bg-white rounded-xl border border-bark-200 hover:border-forest-300 hover:shadow-md transition-all">
+        <span class="text-sm text-forest-600 font-medium">🏃 Exercise</span>
+        <h3 class="font-bold text-bark-700 mt-1">How Much Exercise Does Your Dog Need?</h3>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CLIENT-SIDE JAVASCRIPT -->
+  <!-- ============================================================ -->
+  <script>
+    // ===== Data & State =====
+    const FOODS: any[] = (window as any).__PAW_FOODS || [];
+    const BREEDS: any[] = (window as any).__PAW_BREEDS || [];
+
+    const ACTIVITY_CALS: Record<string, number> = {
+      walk: 3.5, run: 8.0, play: 5.0, swim: 7.0,
+      fetch: 5.5, hike: 5.5, agility: 6.5, other: 4.0
+    };
+    const ACTIVITY_ICONS: Record<string, string> = {
+      walk: '🚶', run: '🏃', play: '🎾', swim: '🏊',
+      fetch: '🦴', hike: '⛰️', agility: '🎪', other: '🐾'
+    };
+    const ACTIVITY_NAMES: Record<string, string> = {
+      walk: 'Walk', run: 'Run', play: 'Play', swim: 'Swim',
+      fetch: 'Fetch', hike: 'Hike', agility: 'Agility', other: 'Other'
+    };
+
+    interface DogProfile {
+      name: string;
+      breed: string;
+      weight: number;
+      age: number;
+      activity: string;
+      dailyCalories: number;
+    }
+
+    interface FoodEntry {
+      foodId: string;
+      foodName: string;
+      brand: string;
+      grams: number;
+      calories: number;
+      protein: number;
+      fat: number;
+      fiber: number;
+      timestamp: number;
+    }
+
+    interface ActivityEntry {
+      type: string;
+      duration: number;
+      calories: number;
+      timestamp: number;
+    }
+
+    let profile: DogProfile | null = null;
+    let todayFoods: FoodEntry[] = [];
+    let todayActivities: ActivityEntry[] = [];
+    let selectedActivityType = '';
+    let selectedDuration = 0;
+
+    // ===== Helpers =====
+    const $ = (s: string) => document.querySelector(s) as HTMLElement | null;
+    const $$ = (s: string) => document.querySelectorAll(s);
+    const todayKey = () => new Date().toISOString().split('T')[0];
+
+    function calcDailyCalories(weight: number, age: number, activity: string): number {
+      // RER (Resting Energy Requirement) = 70 * weight^0.75
+      const rer = 70 * Math.pow(weight, 0.75);
+      // Activity multiplier
+      let mult = 1.4; // average adult
+      if (activity === 'low') mult = 1.2;
+      else if (activity === 'medium') mult = 1.4;
+      else if (activity === 'high') mult = 1.8;
+      else if (activity === 'very-high') mult = 2.2;
+
+      // Age adjustments
+      if (age < 1) mult = 2.0; // puppy
+      else if (age < 2) mult = Math.max(mult, 1.6); // young adult
+      else if (age >= 8) mult *= 0.9; // senior reduction
+
+      return Math.round(rer * mult);
+    }
+
+    function calcActivityBurn(type: string, durationMin: number, weightKg: number): number {
+      const calPerMinPerKg = (ACTIVITY_CALS[type] || 4.0) / 30; // normalise to per-minute per kg
+      return Math.round(calPerMinPerKg * durationMin * weightKg);
+    }
+
+    function barColor(pct: number): string {
+      if (pct < 60) return 'bg-paw-400'; // amber - under
+      if (pct <= 110) return 'bg-forest-500'; // green - good
+      if (pct <= 130) return 'bg-paw-500'; // amber - over
+      return 'bg-red-500'; // red - way over
+    }
+
+    // ===== Persistence =====
+    function saveProfile() {
+      if (profile) localStorage.setItem('pawtracker-profile', JSON.stringify(profile));
+    }
+    function loadProfile(): DogProfile | null {
+      const d = localStorage.getItem('pawtracker-profile');
+      return d ? JSON.parse(d) : null;
+    }
+    function saveFoodLog() {
+      localStorage.setItem(`pawtracker-food-${todayKey()}`, JSON.stringify(todayFoods));
+    }
+    function loadFoodLog(): FoodEntry[] {
+      const d = localStorage.getItem(`pawtracker-food-${todayKey()}`);
+      return d ? JSON.parse(d) : [];
+    }
+    function saveActivityLog() {
+      localStorage.setItem(`pawtracker-activity-${todayKey()}`, JSON.stringify(todayActivities));
+    }
+    function loadActivityLog(): ActivityEntry[] {
+      const d = localStorage.getItem(`pawtracker-activity-${todayKey()}`);
+      return d ? JSON.parse(d) : [];
+    }
+
+    // ===== Populate Breed Dropdown =====
+    function initBreeds() {
+      const sel = document.getElementById('dog-breed') as HTMLSelectElement;
+      BREEDS.forEach(b => {
+        const opt = document.createElement('option');
+        opt.value = b.name;
+        opt.textContent = b.name + (b.avgWeightKg > 0 ? ` (~${b.avgWeightKg}kg)` : '');
+        sel.appendChild(opt);
+      });
+    }
+
+    // ===== Populate Brand Filter =====
+    function initBrandFilter() {
+      const sel = document.getElementById('food-brand-filter') as HTMLSelectElement;
+      const brands = [...new Set(FOODS.map((f: any) => f.brand))].sort();
+      brands.forEach(b => {
+        const opt = document.createElement('option');
+        opt.value = b;
+        opt.textContent = b;
+        sel.appendChild(opt);
+      });
+    }
+
+    // ===== Profile Logic =====
+    let selectedActivity = '';
+
+    $$('.activity-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        selectedActivity = (btn as HTMLElement).dataset.activity || '';
+        $$('.activity-btn').forEach(b => {
+          b.classList.remove('border-forest-500', 'bg-forest-50');
+          b.classList.add('border-bark-200');
+        });
+        btn.classList.remove('border-bark-200');
+        btn.classList.add('border-forest-500', 'bg-forest-50');
+      });
+    });
+
+    $('#save-profile-btn')?.addEventListener('click', () => {
+      const name = (document.getElementById('dog-name') as HTMLInputElement).value.trim();
+      const breed = (document.getElementById('dog-breed') as HTMLSelectElement).value;
+      const weight = parseFloat((document.getElementById('dog-weight') as HTMLInputElement).value);
+      const age = parseFloat((document.getElementById('dog-age') as HTMLInputElement).value);
+
+      // Validation
+      const errEl = $('#profile-error');
+      if (!name || !breed || !weight || isNaN(age) || !selectedActivity) {
+        if (errEl) {
+          errEl.textContent = 'Please fill in all fields and select an activity level.';
+          errEl.classList.remove('hidden');
+        }
+        return;
+      }
+      if (errEl) errEl.classList.add('hidden');
+
+      // Auto-fill weight from breed if missing
+      let w = weight;
+      if (!w || w <= 0) {
+        const breedData = BREEDS.find((b: any) => b.name === breed);
+        if (breedData && breedData.avgWeightKg > 0) w = breedData.avgWeightKg;
+      }
+
+      const dailyCalories = calcDailyCalories(w, age, selectedActivity);
+
+      profile = { name, breed, weight: w, age, activity: selectedActivity, dailyCalories };
+      saveProfile();
+      showProfileSummary();
+      showTracker();
+    });
+
+    function showProfileSummary() {
+      if (!profile) return;
+      $('#profile-form')?.classList.add('hidden');
+      $('#profile-summary')?.classList.remove('hidden');
+      $('#profile-title')!.textContent = `${profile.name}'s Profile`;
+
+      const summaryName = $('#summary-name');
+      const summaryDetails = $('#summary-details');
+      const summaryCals = $('#summary-calories');
+      if (summaryName) summaryName.textContent = profile.name;
+      if (summaryDetails) summaryDetails.textContent = `${profile.breed} · ${profile.weight}kg · ${profile.age}yr · ${profile.activity} activity`;
+      if (summaryCals) summaryCals.textContent = `${profile.dailyCalories} kcal`;
+    }
+
+    $('#edit-profile-btn')?.addEventListener('click', () => {
+      $('#profile-form')?.classList.remove('hidden');
+      $('#profile-summary')?.classList.add('hidden');
+      $('#profile-title')!.textContent = 'Edit Your Dog\'s Profile';
+
+      // Pre-fill
+      if (profile) {
+        (document.getElementById('dog-name') as HTMLInputElement).value = profile.name;
+        (document.getElementById('dog-breed') as HTMLSelectElement).value = profile.breed;
+        (document.getElementById('dog-weight') as HTMLInputElement).value = String(profile.weight);
+        (document.getElementById('dog-age') as HTMLInputElement).value = String(profile.age);
+        selectedActivity = profile.activity;
+        $$('.activity-btn').forEach(b => {
+          if ((b as HTMLElement).dataset.activity === profile!.activity) {
+            b.classList.add('border-forest-500', 'bg-forest-50');
+            b.classList.remove('border-bark-200');
+          }
+        });
+      }
+    });
+
+    function showTracker() {
+      $('#tracker-main')?.classList.remove('hidden');
+      switchTab('nutrition');
+    }
+
+    // ===== Auto-fill weight from breed =====
+    document.getElementById('dog-breed')?.addEventListener('change', (e) => {
+      const breedName = (e.target as HTMLSelectElement).value;
+      const breed = BREEDS.find((b: any) => b.name === breedName);
+      const weightInput = document.getElementById('dog-weight') as HTMLInputElement;
+      if (breed && breed.avgWeightKg > 0 && (!weightInput.value || weightInput.value === '0')) {
+        weightInput.value = String(breed.avgWeightKg);
+      }
+    });
+
+    // ===== Tab Switching =====
+    function switchTab(tab: string) {
+      $$('.tab-btn').forEach(b => {
+        b.classList.remove('bg-white', 'text-forest-700', 'shadow-sm');
+        b.classList.add('text-bark-600');
+      });
+      const activeBtn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
+      if (activeBtn) {
+        activeBtn.classList.add('bg-white', 'text-forest-700', 'shadow-sm');
+        activeBtn.classList.remove('text-bark-600');
+      }
+      $$('.tab-panel').forEach(p => (p as HTMLElement).classList.add('hidden'));
+      $(`#tab-${tab}`)?.classList.remove('hidden');
+
+      if (tab === 'summary') renderSummary();
+    }
+
+    $$('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        switchTab((btn as HTMLElement).dataset.tab || 'nutrition');
+      });
+    });
+
+    // ===== Food Search & Selection =====
+    let searchTimeout: ReturnType<typeof setTimeout>;
+
+    function searchFoods() {
+      const query = ((document.getElementById('food-search') as HTMLInputElement)?.value || '').toLowerCase().trim();
+      const brandFilter = (document.getElementById('food-brand-filter') as HTMLSelectElement)?.value || '';
+      const typeFilter = (document.getElementById('food-type-filter') as HTMLSelectElement)?.value || '';
+
+      let results = FOODS;
+
+      if (brandFilter) results = results.filter((f: any) => f.brand === brandFilter);
+      if (typeFilter) results = results.filter((f: any) => f.category === typeFilter);
+
+      if (query.length >= 2) {
+        results = results.filter((f: any) =>
+          f.name.toLowerCase().includes(query) ||
+          f.brand.toLowerCase().includes(query) ||
+          f.subcategory.toLowerCase().includes(query) ||
+          f.notes.toLowerCase().includes(query)
+        );
+      } else if (!brandFilter && !typeFilter) {
+        // Show featured/premium brands by default
+        results = results.filter((f: any) =>
+          ['Butternut Box', 'Tails.com', "Lily's Kitchen", 'Pooch & Mutt', 'Orijen', 'Canagan'].includes(f.brand)
+        );
+      }
+
+      renderFoodResults(results.slice(0, 30));
+    }
+
+    function renderFoodResults(foods: any[]) {
+      const container = document.getElementById('food-results')!;
+
+      if (foods.length === 0) {
+        container.innerHTML = '<p class="text-center text-bark-400 text-sm py-4">No foods found. Try a different search.</p>';
+        return;
+      }
+
+      container.innerHTML = foods.map(f => {
+        const isAffiliate = f.affiliateUrl && !f.affiliateUrl.includes('amazon');
+        const categoryBadge = {
+          dry: '🥫 Dry', wet: '🥣 Wet', fresh: '🥩 Fresh', raw: '🦴 Raw', treats: '🦴 Treats'
+        }[f.category] || f.category;
+
+        return `
+          <div class="food-item p-3 rounded-lg border border-bark-100 hover:border-forest-300 hover:bg-forest-50/30 transition-all cursor-pointer" data-food-id="${f.id}">
+            <div class="flex items-start justify-between gap-2">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="font-semibold text-bark-800 text-sm">${f.name}</span>
+                  <span class="text-xs px-2 py-0.5 rounded-full bg-bark-100 text-bark-500">${categoryBadge}</span>
+                </div>
+                <p class="text-xs text-bark-500 mt-0.5">${f.brand} · ${f.caloriesPer100g} kcal/100g · ${f.proteinPercent}% protein · ${f.fatPercent}% fat</p>
+                <p class="text-xs text-bark-400 mt-0.5 line-clamp-1">${f.notes}</p>
+              </div>
+              <button type="button" class="add-food-btn shrink-0 bg-forest-600 text-white text-xs px-3 py-1.5 rounded-full font-medium hover:bg-forest-700 transition-colors"
+                data-food-id="${f.id}">+ Add</button>
+            </div>
+            ${f.affiliateUrl ? `
+            <div class="mt-2 flex items-center gap-2">
+              <a href="${f.affiliateUrl}" target="_blank" rel="noopener noreferrer nofollow"
+                class="text-xs text-forest-600 hover:text-forest-800 font-medium underline underline-offset-2"
+                onclick="event.stopPropagation()">
+                ${isAffiliate ? '🛒 Shop this food' : '🛒 View on Amazon'}
+              </a>
+              ${f.brand === 'Butternut Box' ? '<span class="text-xs text-paw-600 font-medium">— Get 50% off first box!</span>' : ''}
+              ${f.brand === 'Tails.com' ? '<span class="text-xs text-paw-600 font-medium">— Free trial available!</span>' : ''}
+            </div>` : ''}
+          </div>
+        `;
+      }).join('');
+
+      // Wire add buttons
+      container.querySelectorAll('.add-food-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const foodId = (btn as HTMLElement).dataset.foodId;
+          promptPortionSize(foodId!);
+        });
+      });
+    }
+
+    function promptPortionSize(foodId: string) {
+      const food = FOODS.find((f: any) => f.id === foodId);
+      if (!food) return;
+
+      const grams = prompt(
+        `How many grams of ${food.brand} ${food.name}?\n\n` +
+        `💡 ${food.servingSuggestion}\n\n` +
+        `(${food.caloriesPer100g} kcal per 100g)`,
+        '100'
+      );
+
+      if (!grams || isNaN(parseFloat(grams))) return;
+      const g = parseFloat(grams);
+
+      const entry: FoodEntry = {
+        foodId: food.id,
+        foodName: food.name,
+        brand: food.brand,
+        grams: g,
+        calories: Math.round((food.caloriesPer100g / 100) * g),
+        protein: Math.round((food.proteinPercent / 100) * g * 10) / 10,
+        fat: Math.round((food.fatPercent / 100) * g * 10) / 10,
+        fiber: Math.round((food.fiberPercent / 100) * g * 10) / 10,
+        timestamp: Date.now()
+      };
+
+      todayFoods.push(entry);
+      saveFoodLog();
+      renderFoodLog();
+    }
+
+    function renderFoodLog() {
+      const container = document.getElementById('food-log')!;
+      const barsContainer = document.getElementById('nutrition-bars')!;
+
+      if (todayFoods.length === 0) {
+        container.innerHTML = '<p class="text-bark-400 text-sm text-center py-6">No food logged yet today. Search and add food above!</p>';
+        barsContainer.classList.add('hidden');
+        return;
+      }
+
+      barsContainer.classList.remove('hidden');
+
+      container.innerHTML = todayFoods.map((entry, i) => `
+        <div class="flex items-center justify-between py-3 ${i > 0 ? 'border-t border-bark-100' : ''}">
+          <div class="flex-1 min-w-0">
+            <span class="font-medium text-bark-800 text-sm">${entry.brand} ${entry.foodName}</span>
+            <p class="text-xs text-bark-500">${entry.grams}g · ${entry.calories} kcal · P: ${entry.protein}g · F: ${entry.fat}g</p>
+          </div>
+          <button type="button" class="remove-food-btn shrink-0 text-bark-300 hover:text-red-500 transition-colors text-lg px-2" data-idx="${i}" aria-label="Remove food entry">
+            ✕
+          </button>
+        </div>
+      `).join('');
+
+      // Remove buttons
+      container.querySelectorAll('.remove-food-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = parseInt((btn as HTMLElement).dataset.idx || '0');
+          todayFoods.splice(idx, 1);
+          saveFoodLog();
+          renderFoodLog();
+        });
+      });
+
+      // Update progress bars
+      updateNutritionBars();
+    }
+
+    function updateNutritionBars() {
+      if (!profile) return;
+
+      const totals = todayFoods.reduce((acc, e) => ({
+        calories: acc.calories + e.calories,
+        protein: acc.protein + e.protein,
+        fat: acc.fat + e.fat,
+        fiber: acc.fiber + e.fiber,
+      }), { calories: 0, protein: 0, fat: 0, fiber: 0 });
+
+      const target = profile.dailyCalories;
+      const calPct = target > 0 ? Math.round((totals.calories / target) * 100) : 0;
+
+      // Calorie bar
+      const barCal = $('#bar-cal') as HTMLElement;
+      const barCalText = $('#bar-cal-text') as HTMLElement;
+      if (barCal) {
+        barCal.style.width = `${Math.min(calPct, 100)}%`;
+        barCal.className = `h-3 rounded-full transition-all duration-500 ${barColor(calPct)}`;
+      }
+      if (barCalText) barCalText.textContent = `${totals.calories} / ${target} kcal (${calPct}%)`;
+
+      // Protein bar (approximate target: ~25% of calories from protein, 4kcal/g)
+      const proTarget = Math.round((target * 0.25) / 4);
+      const proPct = proTarget > 0 ? Math.round((totals.protein / proTarget) * 100) : 0;
+      const barPro = $('#bar-pro') as HTMLElement;
+      const barProText = $('#bar-pro-text') as HTMLElement;
+      if (barPro) {
+        barPro.style.width = `${Math.min(proPct, 100)}%`;
+        barPro.className = `h-2.5 rounded-full transition-all duration-500 ${barColor(proPct)}`;
+      }
+      if (barProText) barProText.textContent = `${totals.protein.toFixed(1)}g / ~${proTarget}g target`;
+
+      // Fat bar (approximate target: ~30% of calories from fat, 9kcal/g)
+      const fatTarget = Math.round((target * 0.30) / 9);
+      const fatPct = fatTarget > 0 ? Math.round((totals.fat / fatTarget) * 100) : 0;
+      const barFat = $('#bar-fat') as HTMLElement;
+      const barFatText = $('#bar-fat-text') as HTMLElement;
+      if (barFat) {
+        barFat.style.width = `${Math.min(fatPct, 100)}%`;
+        barFat.className = `h-2.5 rounded-full transition-all duration-500 ${barColor(fatPct)}`;
+      }
+      if (barFatText) barFatText.textContent = `${totals.fat.toFixed(1)}g / ~${fatTarget}g target`;
+
+      // Fibre bar (approximate: 2-4g per 100kcal target = ~3g per 100kcal)
+      const fibTarget = Math.round((target / 100) * 3);
+      const fibPct = fibTarget > 0 ? Math.round((totals.fiber / fibTarget) * 100) : 0;
+      const barFib = $('#bar-fib') as HTMLElement;
+      const barFibText = $('#bar-fib-text') as HTMLElement;
+      if (barFib) {
+        barFib.style.width = `${Math.min(fibPct, 100)}%`;
+        barFib.className = `h-2.5 rounded-full transition-all duration-500 ${barColor(fibPct)}`;
+      }
+      if (barFibText) barFibText.textContent = `${totals.fiber.toFixed(1)}g / ~${fibTarget}g target`;
+    }
+
+    // Wire up food search
+    document.getElementById('food-search')?.addEventListener('input', () => {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(searchFoods, 250);
+    });
+    document.getElementById('food-brand-filter')?.addEventListener('change', searchFoods);
+    document.getElementById('food-type-filter')?.addEventListener('change', searchFoods);
+
+    // ===== Activity Logic =====
+    $$('.act-type-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        selectedActivityType = (btn as HTMLElement).dataset.actType || '';
+        $$('.act-type-btn').forEach(b => {
+          b.classList.remove('border-forest-500', 'bg-forest-50');
+          b.classList.add('border-bark-200');
+        });
+        btn.classList.remove('border-bark-200');
+        btn.classList.add('border-forest-500', 'bg-forest-50');
+        $('#act-duration-section')?.classList.remove('hidden');
+        selectedDuration = 0;
+        updateActivityEstimate();
+      });
+    });
+
+    $$('.dur-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        selectedDuration = parseInt((btn as HTMLElement).dataset.dur || '0');
+        (document.getElementById('custom-duration') as HTMLInputElement).value = '';
+        $$('.dur-btn').forEach(b => {
+          b.classList.remove('border-forest-500', 'bg-forest-50', 'text-forest-700');
+        });
+        btn.classList.add('border-forest-500', 'bg-forest-50', 'text-forest-700');
+        updateActivityEstimate();
+      });
+    });
+
+    document.getElementById('custom-duration')?.addEventListener('input', (e) => {
+      const val = parseInt((e.target as HTMLInputElement).value);
+      if (val > 0) {
+        selectedDuration = val;
+        $$('.dur-btn').forEach(b => {
+          b.classList.remove('border-forest-500', 'bg-forest-50', 'text-forest-700');
+        });
+        updateActivityEstimate();
+      }
+    });
+
+    function updateActivityEstimate() {
+      const est = $('#act-estimate');
+      const calEst = $('#act-cal-estimate');
+      if (!profile || selectedDuration <= 0 || !selectedActivityType) {
+        est?.classList.add('hidden');
+        return;
+      }
+      const cals = calcActivityBurn(selectedActivityType, selectedDuration, profile.weight);
+      est?.classList.remove('hidden');
+      if (calEst) calEst.textContent = String(cals);
+    }
+
+    $('#log-activity-btn')?.addEventListener('click', () => {
+      if (!profile || !selectedActivityType || selectedDuration <= 0) return;
+
+      const cals = calcActivityBurn(selectedActivityType, selectedDuration, profile.weight);
+      todayActivities.push({
+        type: selectedActivityType,
+        duration: selectedDuration,
+        calories: cals,
+        timestamp: Date.now()
+      });
+      saveActivityLog();
+      renderActivityLog();
+
+      // Reset
+      selectedActivityType = '';
+      selectedDuration = 0;
+      $$('.act-type-btn').forEach(b => {
+        b.classList.remove('border-forest-500', 'bg-forest-50');
+        b.classList.add('border-bark-200');
+      });
+      $$('.dur-btn').forEach(b => {
+        b.classList.remove('border-forest-500', 'bg-forest-50', 'text-forest-700');
+      });
+      (document.getElementById('custom-duration') as HTMLInputElement).value = '';
+      $('#act-duration-section')?.classList.add('hidden');
+      $('#act-estimate')?.classList.add('hidden');
+    });
+
+    function renderActivityLog() {
+      const container = document.getElementById('activity-log')!;
+      const summary = document.getElementById('activity-summary')!;
+
+      if (todayActivities.length === 0) {
+        container.innerHTML = '<p class="text-bark-400 text-sm text-center py-6">No activities logged today. Select an activity type above!</p>';
+        summary.classList.add('hidden');
+        return;
+      }
+
+      summary.classList.remove('hidden');
+
+      container.innerHTML = todayActivities.map((entry, i) => `
+        <div class="flex items-center justify-between py-3 ${i > 0 ? 'border-t border-bark-100' : ''}">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">${ACTIVITY_ICONS[entry.type] || '🐾'}</span>
+            <div>
+              <span class="font-medium text-bark-800 text-sm">${ACTIVITY_NAMES[entry.type] || 'Activity'}</span>
+              <p class="text-xs text-bark-500">${entry.duration} min · ~${entry.calories} kcal burned</p>
+            </div>
+          </div>
+          <button type="button" class="remove-act-btn text-bark-300 hover:text-red-500 transition-colors text-lg px-2" data-idx="${i}" aria-label="Remove activity">
+            ✕
+          </button>
+        </div>
+      `).join('');
+
+      // Remove buttons
+      container.querySelectorAll('.remove-act-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = parseInt((btn as HTMLElement).dataset.idx || '0');
+          todayActivities.splice(idx, 1);
+          saveActivityLog();
+          renderActivityLog();
+        });
+      });
+
+      // Totals
+      const totalTime = todayActivities.reduce((sum, a) => sum + a.duration, 0);
+      const totalBurned = todayActivities.reduce((sum, a) => sum + a.calories, 0);
+      const totalTimeEl = document.getElementById('total-active-time');
+      const totalBurnedEl = document.getElementById('total-calories-burned');
+      if (totalTimeEl) totalTimeEl.textContent = `${totalTime} min`;
+      if (totalBurnedEl) totalBurnedEl.textContent = `${totalBurned} kcal`;
+    }
+
+    // ===== Summary Tab =====
+    function renderSummary() {
+      if (!profile) return;
+
+      const dogName = profile.name;
+      const target = profile.dailyCalories;
+      const eaten = todayFoods.reduce((sum, f) => sum + f.calories, 0);
+      const burned = todayActivities.reduce((sum, a) => sum + a.calories, 0);
+
+      // Header
+      const titleEl = document.getElementById('summary-card-title');
+      if (titleEl) titleEl.textContent = `${dogName}'s Day`;
+
+      const dateEl = document.getElementById('summary-date');
+      if (dateEl) dateEl.textContent = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+
+      // Email capture dog name
+      const emailNameEl = document.getElementById('email-dog-name');
+      if (emailNameEl) emailNameEl.textContent = dogName;
+
+      // Numbers
+      const eatenEl = document.getElementById('sum-eaten');
+      const burnedEl = document.getElementById('sum-burned');
+      const targetEl = document.getElementById('sum-target');
+      if (eatenEl) eatenEl.textContent = String(eaten);
+      if (burnedEl) burnedEl.textContent = String(burned);
+      if (targetEl) targetEl.textContent = String(target);
+
+      // Progress ring
+      const pct = target > 0 ? Math.min(Math.round((eaten / target) * 100), 100) : 0;
+      const ring = document.getElementById('progress-ring') as SVGCircleElement;
+      const ringText = document.getElementById('ring-percent');
+      if (ring) {
+        const circumference = 2 * Math.PI * 52; // 326.73
+        const offset = circumference - (pct / 100) * circumference;
+        ring.style.strokeDashoffset = String(offset);
+
+        // Color the ring
+        if (pct < 60) ring.style.stroke = '#e4964b'; // amber
+        else if (pct <= 110) ring.style.stroke = '#3d8b40'; // green
+        else ring.style.stroke = '#ef4444'; // red
+      }
+      if (ringText) ringText.textContent = `${Math.round((eaten / target) * 100)}%`;
+
+      // Meals list
+      const mealsEl = document.getElementById('sum-meals')!;
+      if (todayFoods.length > 0) {
+        mealsEl.innerHTML = todayFoods.map(f =>
+          `<div class="flex justify-between items-center text-sm">
+            <span class="text-bark-600">${f.brand} ${f.foodName} <span class="text-bark-400">(${f.grams}g)</span></span>
+            <span class="font-medium text-bark-700">${f.calories} kcal</span>
+          </div>`
+        ).join('');
+      } else {
+        mealsEl.innerHTML = '<p class="text-bark-400 text-sm">No meals logged today.</p>';
+      }
+
+      // Activities list
+      const activitiesEl = document.getElementById('sum-activities')!;
+      if (todayActivities.length > 0) {
+        activitiesEl.innerHTML = todayActivities.map(a =>
+          `<div class="flex justify-between items-center text-sm">
+            <span class="text-bark-600">${ACTIVITY_ICONS[a.type]} ${ACTIVITY_NAMES[a.type]} <span class="text-bark-400">(${a.duration} min)</span></span>
+            <span class="font-medium text-paw-600">-${a.calories} kcal</span>
+          </div>`
+        ).join('');
+      } else {
+        activitiesEl.innerHTML = '<p class="text-bark-400 text-sm">No activities logged today.</p>';
+      }
+
+      // Recommendation
+      generateRecommendation(eaten, burned, target);
+    }
+
+    function generateRecommendation(eaten: number, burned: number, target: number) {
+      const recDiv = document.getElementById('sum-recommendation')!;
+      const recText = document.getElementById('sum-rec-text')!;
+      const recLink = document.getElementById('sum-rec-link') as HTMLAnchorElement;
+      const dogName = profile?.name || 'your dog';
+
+      const netCal = eaten - burned;
+      const pctOfTarget = target > 0 ? (netCal / target) * 100 : 0;
+
+      recDiv.classList.remove('hidden');
+
+      if (eaten === 0 && burned === 0) {
+        recText.textContent = `Start logging ${dogName}'s meals and activities to get personalised recommendations!`;
+        recLink.classList.add('hidden');
+        return;
+      }
+
+      recLink.classList.remove('hidden');
+
+      if (pctOfTarget < 70) {
+        recText.textContent = `${dogName} could use a bit more fuel today! A high-quality fresh food like Butternut Box provides perfectly portioned, nutritious meals tailored to your dog.`;
+        recLink.textContent = '🥩 Try Butternut Box — 50% off first box →';
+        recLink.href = 'https://mymuttlife.co.uk/go/butternut-box';
+      } else if (pctOfTarget > 120) {
+        recText.textContent = `${dogName} has had plenty of fuel today! Consider an extra walk or play session. For weight-conscious feeding, Pooch & Mutt Slim & Slender is excellent.`;
+        recLink.textContent = '🐕 See Pooch & Mutt Slim & Slender →';
+        recLink.href = 'https://mymuttlife.co.uk/go/pooch-mutt';
+      } else if (burned > 200) {
+        recText.textContent = `Great active day for ${dogName}! ${burned} calories burned. For high-energy dogs, Orijen's biologically appropriate recipes provide outstanding nutrition.`;
+        recLink.textContent = '⚡ Check out Orijen dog food →';
+        recLink.href = 'https://www.amazon.co.uk/s?k=Orijen+dog+food&tag=mymuttlife-21';
+      } else {
+        recText.textContent = `${dogName}'s day is looking well-balanced! For perfectly portioned meals delivered to your door, Tails.com creates a unique blend just for your dog.`;
+        recLink.textContent = '🐾 Try Tails.com — free trial →';
+        recLink.href = 'https://mymuttlife.co.uk/go/tails-com';
+      }
+    }
+
+    // ===== Reset Day =====
+    $('#reset-day-btn')?.addEventListener('click', () => {
+      if (confirm('Reset all of today\'s food and activity logs? This cannot be undone.')) {
+        todayFoods = [];
+        todayActivities = [];
+        saveFoodLog();
+        saveActivityLog();
+        renderFoodLog();
+        renderActivityLog();
+        renderSummary();
+      }
+    });
+
+    // ===== Email Capture =====
+    $('#email-submit-btn')?.addEventListener('click', async () => {
+      const name = (document.getElementById('email-name') as HTMLInputElement).value.trim();
+      const email = (document.getElementById('email-address') as HTMLInputElement).value.trim();
+
+      if (!name || !email || !email.includes('@')) {
+        alert('Please enter your name and a valid email address.');
+        return;
+      }
+
+      // Save locally
+      const sub = { name, email, dogProfile: profile, timestamp: Date.now() };
+      localStorage.setItem('pawtracker-subscriber', JSON.stringify(sub));
+
+      // Try webhook (non-blocking)
+      try {
+        await fetch('https://hooks.wemakeanyapp.co.uk/webhook/pawtracker-signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(sub)
+        }).catch(() => {}); // Silently fail if webhook isn't set up yet
+      } catch (e) {
+        // Don't block on webhook failure
+      }
+
+      // Show success
+      document.getElementById('email-form')?.classList.add('hidden');
+      document.getElementById('email-success')?.classList.remove('hidden');
+    });
+
+    // ===== Initialisation =====
+    function init() {
+      initBreeds();
+      initBrandFilter();
+
+      // Load existing profile
+      profile = loadProfile();
+      if (profile) {
+        // Pre-fill form values for editing
+        (document.getElementById('dog-name') as HTMLInputElement).value = profile.name;
+        (document.getElementById('dog-breed') as HTMLSelectElement).value = profile.breed;
+        (document.getElementById('dog-weight') as HTMLInputElement).value = String(profile.weight);
+        (document.getElementById('dog-age') as HTMLInputElement).value = String(profile.age);
+        selectedActivity = profile.activity;
+        $$('.activity-btn').forEach(b => {
+          if ((b as HTMLElement).dataset.activity === profile!.activity) {
+            b.classList.add('border-forest-500', 'bg-forest-50');
+            b.classList.remove('border-bark-200');
+          }
+        });
+
+        showProfileSummary();
+        showTracker();
+      }
+
+      // Load today's logs
+      todayFoods = loadFoodLog();
+      todayActivities = loadActivityLog();
+      renderFoodLog();
+      renderActivityLog();
+
+      // Show default food results
+      searchFoods();
+
+      // Check if already subscribed
+      const existingSub = localStorage.getItem('pawtracker-subscriber');
+      if (existingSub) {
+        document.getElementById('email-form')?.classList.add('hidden');
+        document.getElementById('email-success')?.classList.remove('hidden');
+      }
+    }
+
+    init();
+  </script>
+</BaseLayout>
