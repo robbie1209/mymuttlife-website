@@ -7,6 +7,7 @@ readTime: "13 min read"
 publishDate: "2026-02-01"
 modifiedDate: "2026-02-11"
 slug: "keeping-dogs-calm-fireworks-uk"
+image: "/images/blog-fireworks.jpg"
 ---
 
 

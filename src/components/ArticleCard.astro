@@ -6,10 +6,11 @@ interface Props {
   category: string;
   readTime: string;
   emoji: string;
+  image?: string;
   featured?: boolean;
 }
 
-const { title, description, slug, category, readTime, emoji, featured = false } = Astro.props;
+const { title, description, slug, category, readTime, emoji, image, featured = false } = Astro.props;
 ---
 
 <a
@@ -19,17 +20,30 @@ const { title, description, slug, category, readTime, emoji, featured = false } 
     featured && 'sm:col-span-2'
   ]}
 >
-  <!-- Emoji hero -->
+  <!-- Image hero -->
   <div class:list={[
-    'bg-gradient-to-br from-forest-50 to-cream-100 flex items-center justify-center',
-    featured ? 'h-40 sm:h-48' : 'h-32 sm:h-36'
+    'relative overflow-hidden',
+    featured ? 'h-48 sm:h-64' : 'h-40 sm:h-48'
   ]}>
-    <span class:list={[
-      'group-hover:scale-110 transition-transform duration-300',
-      featured ? 'text-6xl sm:text-7xl' : 'text-5xl sm:text-6xl'
-    ]}>
-      {emoji}
-    </span>
+    {image ? (
+      <img
+        src={image}
+        alt={title}
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+    ) : (
+      <div class="w-full h-full bg-gradient-to-br from-forest-50 to-cream-100 flex items-center justify-center">
+        <span class:list={[
+          'group-hover:scale-110 transition-transform duration-300',
+          featured ? 'text-6xl sm:text-7xl' : 'text-5xl sm:text-6xl'
+        ]}>
+          {emoji}
+        </span>
+      </div>
+    )}
   </div>
 
   <div class="p-5 sm:p-6">

@@ -7,6 +7,7 @@ readTime: "10 min read"
 publishDate: "2026-02-01"
 modifiedDate: "2026-02-11"
 slug: "dog-walking-essentials-kit-guide"
+image: "/images/blog-dog-walking.jpg"
 ---
 
 

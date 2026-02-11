@@ -18,14 +18,26 @@ const related = articles.filter(a => slugs.includes(a.slug));
       {related.map(article => (
         <a
           href={`/blog/${article.slug}/`}
-          class="group flex items-center gap-4 p-4 bg-cream-50 border border-bark-200 rounded-xl hover:border-forest-300 hover:bg-forest-50 transition-all"
+          class="group flex items-center gap-4 p-3 bg-cream-50 border border-bark-200 rounded-xl hover:border-forest-300 hover:bg-forest-50 transition-all overflow-hidden"
         >
-          <span class="text-3xl shrink-0">{article.emoji}</span>
+          {article.image ? (
+            <div class="w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-lg overflow-hidden">
+              <img
+                src={article.image}
+                alt={article.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          ) : (
+            <span class="text-3xl shrink-0">{article.emoji}</span>
+          )}
           <div>
             <h3 class="font-semibold text-bark-700 group-hover:text-forest-700 transition-colors text-sm leading-snug">
               {article.title}
             </h3>
-            <span class="text-xs text-bark-400 mt-1">{article.readTime}</span>
+            <span class="text-xs text-bark-400 mt-1 block">{article.readTime}</span>
           </div>
         </a>
       ))}

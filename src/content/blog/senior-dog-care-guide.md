@@ -7,6 +7,7 @@ readTime: "14 min read"
 publishDate: "2026-02-01"
 modifiedDate: "2026-02-11"
 slug: "senior-dog-care-guide"
+image: "/images/blog-senior-care.jpg"
 ---
 
 

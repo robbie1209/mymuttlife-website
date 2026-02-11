@@ -4,6 +4,7 @@ export interface Article {
   description: string;
   category: string;
   emoji: string;
+  image: string;
   readTime: string;
   publishDate: string;
   modifiedDate: string;
@@ -18,6 +19,7 @@ export const articles: Article[] = [
     description: 'Complete guide to the best dog food for Labradors in the UK. From budget picks to fresh food delivery, find the perfect diet for your Lab at every life stage.',
     category: 'Dog Nutrition',
     emoji: '🦮',
+    image: '/images/labrador-food.jpg',
     readTime: '12 min read',
     publishDate: '2026-02-01',
     modifiedDate: '2026-02-11',
@@ -30,6 +32,7 @@ export const articles: Article[] = [
     description: 'Expert picks for the best German Shepherd dog food in the UK. Covers puppies, adults, and seniors, plus feeding tips for this active breed\'s sensitive stomach.',
     category: 'Dog Nutrition',
     emoji: '🐕‍🦺',
+    image: '/images/german-shepherd.jpg',
     readTime: '11 min read',
     publishDate: '2026-02-01',
     modifiedDate: '2026-02-11',
@@ -42,6 +45,7 @@ export const articles: Article[] = [
     description: 'We compare the top UK dog insurance providers for 2026. Petplan, ManyPets, Agria and more — find the right cover for your dog without overpaying.',
     category: 'Insurance & Finance',
     emoji: '🛡️',
+    image: '/images/dog-vet-insurance.jpg',
     readTime: '14 min read',
     publishDate: '2026-02-01',
     modifiedDate: '2026-02-11',
@@ -54,6 +58,7 @@ export const articles: Article[] = [
     description: 'Joint problems affect 1 in 5 UK dogs. We review the best joint supplements including YuMOVE, Lintbells, and natural options to keep your dog mobile and pain-free.',
     category: 'Dog Health',
     emoji: '💪',
+    image: '/images/senior-dog-supplements.jpg',
     readTime: '10 min read',
     publishDate: '2026-02-01',
     modifiedDate: '2026-02-11',
@@ -66,6 +71,7 @@ export const articles: Article[] = [
     description: 'The 15 must-have dog walking essentials for UK dog owners. From leads and poo bags to first aid kits and seasonal gear — never be caught short on a walk again.',
     category: 'Dog Lifestyle',
     emoji: '🎒',
+    image: '/images/dog-walking.jpg',
     readTime: '10 min read',
     publishDate: '2026-02-01',
     modifiedDate: '2026-02-11',
@@ -78,6 +84,7 @@ export const articles: Article[] = [
     description: 'Not sure how much to walk your dog? Our definitive breed-by-breed exercise guide covers puppies to seniors, with tips for every energy level.',
     category: 'Dog Lifestyle',
     emoji: '🏃',
+    image: '/images/dog-running.jpg',
     readTime: '10 min read',
     publishDate: '2026-02-01',
     modifiedDate: '2026-02-11',
@@ -90,6 +97,7 @@ export const articles: Article[] = [
     description: '60% of UK dogs are distressed by fireworks. Expert-backed techniques, proven products, and preparation tips to keep your dog safe and calm during firework season.',
     category: 'Dog Behaviour',
     emoji: '🎆',
+    image: '/images/anxious-dog.jpg',
     readTime: '13 min read',
     publishDate: '2026-02-01',
     modifiedDate: '2026-02-11',
@@ -102,6 +110,7 @@ export const articles: Article[] = [
     description: 'Everything you need to know about caring for an older dog in the UK. From diet and exercise to health checks and making your home comfortable for ageing joints.',
     category: 'Dog Health',
     emoji: '🐕',
+    image: '/images/senior-dog-portrait.jpg',
     readTime: '14 min read',
     publishDate: '2026-02-01',
     modifiedDate: '2026-02-11',

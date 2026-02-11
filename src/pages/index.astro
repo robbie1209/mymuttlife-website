@@ -8,17 +8,21 @@ const recent = articles.filter(a => !a.featured).slice(0, 4);
 ---
 
 <BaseLayout title="Your Trusted UK Dog Care Guide" description="My Mutt Life — Expert guides on dog food, health, insurance, and wellbeing for UK dog owners. Honest reviews, practical advice, no nonsense.">
-  <!-- Hero Section -->
-  <section class="relative bg-gradient-to-br from-forest-700 via-forest-600 to-forest-800 text-white overflow-hidden">
-    <!-- Decorative paw prints -->
-    <div class="absolute inset-0 opacity-5">
-      <div class="absolute top-10 left-10 text-8xl rotate-12">🐾</div>
-      <div class="absolute top-20 right-20 text-6xl -rotate-12">🐾</div>
-      <div class="absolute bottom-10 left-1/3 text-7xl rotate-45">🐾</div>
-      <div class="absolute bottom-20 right-10 text-5xl -rotate-30">🐾</div>
+  <!-- Hero Section with Background Image -->
+  <section class="relative text-white overflow-hidden">
+    <!-- Background image -->
+    <div class="absolute inset-0">
+      <img
+        src="/images/hero-dog.jpg"
+        alt="Happy dog in warm sunlight"
+        class="w-full h-full object-cover"
+        loading="eager"
+        decoding="async"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-forest-900/85 via-forest-800/75 to-forest-700/65"></div>
     </div>
 
-    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24 lg:py-32 text-center">
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-28 lg:py-36 text-center">
       <p class="text-forest-200 text-sm sm:text-base font-medium uppercase tracking-wider mb-4">Where Style Meets Wagging Tails</p>
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6" style="font-family: var(--font-heading); color: white;">
         Honest Dog Care<br>
@@ -62,6 +66,7 @@ const recent = articles.filter(a => !a.featured).slice(0, 4);
           category={article.category}
           readTime={article.readTime}
           emoji={article.emoji}
+          image={article.image}
           featured={true}
         />
       ))}
@@ -83,6 +88,7 @@ const recent = articles.filter(a => !a.featured).slice(0, 4);
             category={article.category}
             readTime={article.readTime}
             emoji={article.emoji}
+            image={article.image}
           />
         ))}
       </div>
@@ -95,19 +101,31 @@ const recent = articles.filter(a => !a.featured).slice(0, 4);
   </section>
 
   <!-- About Teaser -->
-  <section class="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16 text-center">
-    <span class="text-5xl mb-4 block">🐾</span>
-    <h2 class="text-2xl sm:text-3xl font-bold text-bark-800 mb-4" style="font-family: var(--font-heading)">
-      Built by Dog Lovers, for Dog Lovers
-    </h2>
-    <p class="text-bark-600 text-lg leading-relaxed max-w-2xl mx-auto mb-6">
-      My Mutt Life started with one simple idea: dog owners deserve honest, practical advice — not sponsored nonsense.
-      Inspired by Poppy, our beloved black Labrador, everything we write comes from real experience and genuine research.
-    </p>
-    <a href="/about/" class="text-forest-600 font-semibold hover:text-forest-800 transition-colors inline-flex items-center gap-1">
-      Our Story
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-    </a>
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+    <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+      <div class="w-full md:w-2/5">
+        <img
+          src="/images/owner-with-dog.jpg"
+          alt="Dog owner walking with their happy dog"
+          class="rounded-2xl shadow-lg w-full h-64 md:h-80 object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="w-full md:w-3/5 text-center md:text-left">
+        <h2 class="text-2xl sm:text-3xl font-bold text-bark-800 mb-4" style="font-family: var(--font-heading)">
+          Built by Dog Lovers, for Dog Lovers
+        </h2>
+        <p class="text-bark-600 text-lg leading-relaxed mb-6">
+          My Mutt Life started with one simple idea: dog owners deserve honest, practical advice — not sponsored nonsense.
+          Inspired by Poppy, our beloved black Labrador, everything we write comes from real experience and genuine research.
+        </p>
+        <a href="/about/" class="text-forest-600 font-semibold hover:text-forest-800 transition-colors inline-flex items-center gap-1">
+          Our Story
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      </div>
+    </div>
   </section>
 
   <!-- Topics Grid -->
@@ -118,15 +136,25 @@ const recent = articles.filter(a => !a.featured).slice(0, 4);
       </h2>
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {[
-          { emoji: '🥩', title: 'Dog Nutrition', desc: 'Breed-specific food guides and honest reviews' },
-          { emoji: '🏥', title: 'Dog Health', desc: 'Supplements, senior care, and preventive health' },
-          { emoji: '🛡️', title: 'Insurance', desc: 'UK provider comparisons to find the right cover' },
-          { emoji: '🌿', title: 'Lifestyle', desc: 'Walking gear, exercise guides, and seasonal tips' },
+          { image: '/images/category-nutrition.jpg', title: 'Dog Nutrition', desc: 'Breed-specific food guides and honest reviews' },
+          { image: '/images/category-health.jpg', title: 'Dog Health', desc: 'Supplements, senior care, and preventive health' },
+          { image: '/images/category-insurance.jpg', title: 'Insurance', desc: 'UK provider comparisons to find the right cover' },
+          { image: '/images/category-lifestyle.jpg', title: 'Lifestyle', desc: 'Walking gear, exercise guides, and seasonal tips' },
         ].map(topic => (
-          <div class="bg-white rounded-xl p-5 sm:p-6 text-center border border-bark-200 hover:border-forest-300 hover:shadow-md transition-all">
-            <span class="text-3xl sm:text-4xl block mb-3">{topic.emoji}</span>
-            <h3 class="font-bold text-bark-700 mb-1" style="font-family: var(--font-heading)">{topic.title}</h3>
-            <p class="text-bark-500 text-sm">{topic.desc}</p>
+          <div class="group bg-white rounded-xl overflow-hidden border border-bark-200 hover:border-forest-300 hover:shadow-md transition-all">
+            <div class="h-32 sm:h-40 overflow-hidden">
+              <img
+                src={topic.image}
+                alt={topic.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="p-4 sm:p-5 text-center">
+              <h3 class="font-bold text-bark-700 mb-1" style="font-family: var(--font-heading)">{topic.title}</h3>
+              <p class="text-bark-500 text-sm">{topic.desc}</p>
+            </div>
           </div>
         ))}
       </div>

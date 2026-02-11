@@ -24,6 +24,7 @@ const articleData = getArticleBySlug(post.data.slug);
   slug={post.data.slug}
   category={post.data.category}
   readTime={post.data.readTime}
+  image={articleData?.image || post.data.image}
   headings={headings}
   relatedSlugs={articleData?.relatedSlugs || []}
 >

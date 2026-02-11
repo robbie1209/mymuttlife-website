@@ -7,6 +7,7 @@ readTime: "11 min read"
 publishDate: "2026-02-01"
 modifiedDate: "2026-02-11"
 slug: "best-dog-food-german-shepherds-uk"
+image: "/images/blog-german-shepherd.jpg"
 ---
 
 

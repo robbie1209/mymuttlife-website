@@ -12,6 +12,7 @@ interface Props {
   slug: string;
   category: string;
   readTime: string;
+  image?: string;
   headings: { depth: number; slug: string; text: string }[];
   relatedSlugs?: string[];
 }
@@ -24,6 +25,7 @@ const {
   slug,
   category,
   readTime,
+  image,
   headings,
   relatedSlugs = []
 } = Astro.props;
@@ -39,6 +41,7 @@ const articleSchema = {
   "url": canonicalUrl,
   "datePublished": publishDate,
   "dateModified": modifiedDate,
+  ...(image && { "image": `${siteUrl}${image}` }),
   "author": {
     "@type": "Organization",
     "name": "My Mutt Life",
@@ -83,6 +86,19 @@ const articleSchema = {
       </h1>
       <p class="text-lg text-bark-500 leading-relaxed">{description}</p>
     </header>
+
+    <!-- Hero image -->
+    {image && (
+      <div class="mb-8 -mx-4 sm:mx-0">
+        <img
+          src={image}
+          alt={title}
+          class="w-full h-56 sm:h-72 lg:h-80 object-cover sm:rounded-2xl shadow-md"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    )}
 
     <!-- Affiliate disclosure -->
     <AffiliateDisclosure />

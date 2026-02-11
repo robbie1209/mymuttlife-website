@@ -7,6 +7,7 @@ readTime: "10 min read"
 publishDate: "2026-02-01"
 modifiedDate: "2026-02-11"
 slug: "dog-exercise-breed-guide"
+image: "/images/blog-dog-exercise.jpg"
 ---
 
 
