@@ -7,7 +7,7 @@ readTime: "14 min read"
 publishDate: "2026-02-01"
 modifiedDate: "2026-02-11"
 slug: "senior-dog-care-guide"
-image: "/images/blog-senior-care.jpg"
+image: "/images/poppy/poppy-town-sunny.jpg"
 ---
 
 
@@ -287,6 +287,8 @@ The loss of a dog is a real bereavement. If you're struggling:
 ✅ Review pet insurance or start a vet savings fund
 ✅ Check for lumps, bumps, and behavioural changes regularly
 ✅ Give them extra love (they've earned it)
+
+> 🛏️ **Finding the right bed for your senior dog is one of the best things you can do for their joints.** [Use our free Dog Bed Size Calculator](/tools/dog-bed-calculator/) to get a personalised recommendation.
 
 ## The Bottom Line
 

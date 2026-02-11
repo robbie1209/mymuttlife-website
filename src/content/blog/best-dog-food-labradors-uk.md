@@ -7,7 +7,7 @@ readTime: "12 min read"
 publishDate: "2026-02-01"
 modifiedDate: "2026-02-11"
 slug: "best-dog-food-labradors-uk"
-image: "/images/blog-labrador-food.jpg"
+image: "/images/poppy/poppy-smiling-kitchen.jpg"
 ---
 
 

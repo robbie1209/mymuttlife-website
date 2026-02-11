@@ -1,0 +1,757 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const siteUrl = 'https://mymuttlife.co.uk';
+const canonicalUrl = `${siteUrl}/tools/dog-bed-calculator/`;
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What size dog bed do I need?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Measure your dog from nose to tail base and add 15-30cm. For dogs that curl up, a round bed slightly larger than their curled size works. For dogs that stretch out, you'll need a bed at least as long as their full stretched length. Small dogs (under 10kg) typically need 60×45cm, medium dogs (10-25kg) need 90×60cm, large dogs (25-40kg) need 105×75cm, and extra-large dogs (40kg+) need 120×90cm or larger."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What type of dog bed is best for dogs with joint problems?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Orthopedic memory foam beds are the best choice for dogs with joint problems. They provide even weight distribution and pressure relief for sore joints. Look for beds with at least 7-10cm of memory foam and a removable, washable cover. Bolster beds with orthopedic bases are also great as the raised edges provide neck and head support."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I get a bigger or smaller dog bed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When in doubt, go bigger. A bed that's too small will be uncomfortable and your dog may avoid it. Most dogs prefer having room to stretch and change positions during the night. The exception is nervous dogs who may feel more secure in a snugger, bolster-style bed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should I replace my dog's bed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Replace your dog's bed every 1-3 years depending on quality and condition. Signs it's time for a new bed include: the filling has gone flat and doesn't spring back, there's a persistent smell even after washing, the cover is torn or the waterproof lining has deteriorated, or your dog has outgrown it."
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Dog Bed Size Calculator | Find the Perfect Bed for Your Dog"
+  description="Not sure what size dog bed you need? Use our free dog bed calculator — answer 4 quick questions to get personalised bed size, type, and product recommendations for your dog."
+  canonicalUrl={canonicalUrl}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <!-- Header -->
+    <header class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-bark-800 leading-tight mb-4" style="font-family: var(--font-heading)">
+        🛏️ Dog Bed Size Calculator
+      </h1>
+      <p class="text-lg text-bark-500 max-w-2xl mx-auto">
+        Answer 4 quick questions and we'll recommend the perfect bed size, type, and top products for your dog.
+      </p>
+    </header>
+
+    <!-- Calculator Container -->
+    <div id="calculator" class="bg-white rounded-2xl border border-bark-200 shadow-sm overflow-hidden">
+      <!-- Progress Bar -->
+      <div class="bg-cream-100 px-6 py-3">
+        <div class="flex items-center justify-between mb-2">
+          <span id="step-label" class="text-sm font-medium text-bark-600">Step 1 of 4</span>
+          <span id="step-percent" class="text-sm text-bark-400">25%</span>
+        </div>
+        <div class="w-full bg-bark-200 rounded-full h-2">
+          <div id="progress-bar" class="bg-forest-500 h-2 rounded-full transition-all duration-500" style="width: 25%"></div>
+        </div>
+      </div>
+
+      <!-- Step 1: Dog Size -->
+      <div id="step-1" class="step-panel p-6 sm:p-8">
+        <h2 class="text-xl sm:text-2xl font-bold text-bark-800 mb-2" style="font-family: var(--font-heading)">
+          How big is your dog?
+        </h2>
+        <p class="text-bark-500 mb-6">Select a size category or enter your dog's details manually.</p>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+          <button type="button" data-size="small" class="size-btn group p-4 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-center">
+            <span class="text-3xl block mb-2">🐕</span>
+            <span class="font-semibold text-bark-700 group-hover:text-forest-700 block">Small</span>
+            <span class="text-xs text-bark-400">Under 10kg</span>
+            <span class="text-xs text-bark-400 block">e.g. Jack Russell, Pug</span>
+          </button>
+          <button type="button" data-size="medium" class="size-btn group p-4 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-center">
+            <span class="text-3xl block mb-2">🦮</span>
+            <span class="font-semibold text-bark-700 group-hover:text-forest-700 block">Medium</span>
+            <span class="text-xs text-bark-400">10–25kg</span>
+            <span class="text-xs text-bark-400 block">e.g. Cocker Spaniel, Beagle</span>
+          </button>
+          <button type="button" data-size="large" class="size-btn group p-4 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-center">
+            <span class="text-3xl block mb-2">🐕‍🦺</span>
+            <span class="font-semibold text-bark-700 group-hover:text-forest-700 block">Large</span>
+            <span class="text-xs text-bark-400">25–40kg</span>
+            <span class="text-xs text-bark-400 block">e.g. Labrador, GSD</span>
+          </button>
+          <button type="button" data-size="xlarge" class="size-btn group p-4 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-center">
+            <span class="text-3xl block mb-2">🐾</span>
+            <span class="font-semibold text-bark-700 group-hover:text-forest-700 block">Extra Large</span>
+            <span class="text-xs text-bark-400">Over 40kg</span>
+            <span class="text-xs text-bark-400 block">e.g. Great Dane, Mastiff</span>
+          </button>
+        </div>
+
+        <div class="border-t border-bark-200 pt-4">
+          <button type="button" id="toggle-manual" class="text-sm text-forest-600 hover:text-forest-800 font-medium">
+            ✏️ I'd rather enter weight/height manually
+          </button>
+          <div id="manual-input" class="hidden mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-bark-700 mb-1">Weight (kg)</label>
+              <input type="number" id="dog-weight" min="1" max="100" placeholder="e.g. 30" class="w-full px-4 py-2.5 rounded-lg border border-bark-300 focus:border-forest-500 focus:ring-2 focus:ring-forest-200 outline-none transition" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-bark-700 mb-1">Length nose-to-tail (cm) <span class="text-bark-400">(optional)</span></label>
+              <input type="number" id="dog-length" min="20" max="200" placeholder="e.g. 85" class="w-full px-4 py-2.5 rounded-lg border border-bark-300 focus:border-forest-500 focus:ring-2 focus:ring-forest-200 outline-none transition" />
+            </div>
+            <div class="sm:col-span-2">
+              <button type="button" id="manual-next" class="bg-forest-600 text-white px-6 py-2.5 rounded-full font-medium hover:bg-forest-700 transition-colors">
+                Continue →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Sleeping Style -->
+      <div id="step-2" class="step-panel hidden p-6 sm:p-8">
+        <h2 class="text-xl sm:text-2xl font-bold text-bark-800 mb-2" style="font-family: var(--font-heading)">
+          How does your dog sleep?
+        </h2>
+        <p class="text-bark-500 mb-6">Pick the position your dog uses most often.</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <button type="button" data-style="curled" class="style-btn group p-5 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-left flex items-start gap-4">
+            <span class="text-3xl">🍩</span>
+            <div>
+              <span class="font-semibold text-bark-700 group-hover:text-forest-700 block">Curled up</span>
+              <span class="text-sm text-bark-400">Nose to tail, like a doughnut</span>
+            </div>
+          </button>
+          <button type="button" data-style="stretched" class="style-btn group p-5 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-left flex items-start gap-4">
+            <span class="text-3xl">📏</span>
+            <div>
+              <span class="font-semibold text-bark-700 group-hover:text-forest-700 block">Stretched out</span>
+              <span class="text-sm text-bark-400">Fully extended, legs out</span>
+            </div>
+          </button>
+          <button type="button" data-style="side" class="style-btn group p-5 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-left flex items-start gap-4">
+            <span class="text-3xl">🐶</span>
+            <div>
+              <span class="font-semibold text-bark-700 group-hover:text-forest-700 block">On their side</span>
+              <span class="text-sm text-bark-400">Leaning against something, legs partly out</span>
+            </div>
+          </button>
+          <button type="button" data-style="changes" class="style-btn group p-5 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-left flex items-start gap-4">
+            <span class="text-3xl">🔄</span>
+            <div>
+              <span class="font-semibold text-bark-700 group-hover:text-forest-700 block">Changes position</span>
+              <span class="text-sm text-bark-400">Moves around, no set position</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3: Special Needs -->
+      <div id="step-3" class="step-panel hidden p-6 sm:p-8">
+        <h2 class="text-xl sm:text-2xl font-bold text-bark-800 mb-2" style="font-family: var(--font-heading)">
+          Any special needs?
+        </h2>
+        <p class="text-bark-500 mb-6">Select all that apply (or skip if none).</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+          <button type="button" data-need="joints" class="need-btn group p-5 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-left flex items-start gap-4">
+            <span class="text-2xl">🦴</span>
+            <div>
+              <span class="font-semibold text-bark-700 group-hover:text-forest-700 block">Joint issues</span>
+              <span class="text-sm text-bark-400">Arthritis, hip dysplasia, stiffness</span>
+            </div>
+          </button>
+          <button type="button" data-need="senior" class="need-btn group p-5 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-left flex items-start gap-4">
+            <span class="text-2xl">👴</span>
+            <div>
+              <span class="font-semibold text-bark-700 group-hover:text-forest-700 block">Senior dog (7+)</span>
+              <span class="text-sm text-bark-400">Older dog needing extra comfort</span>
+            </div>
+          </button>
+          <button type="button" data-need="puppy" class="need-btn group p-5 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-left flex items-start gap-4">
+            <span class="text-2xl">🐾</span>
+            <div>
+              <span class="font-semibold text-bark-700 group-hover:text-forest-700 block">Puppy</span>
+              <span class="text-sm text-bark-400">Still growing, might chew</span>
+            </div>
+          </button>
+          <button type="button" data-need="temperature" class="need-btn group p-5 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-left flex items-start gap-4">
+            <span class="text-2xl">🌡️</span>
+            <div>
+              <span class="font-semibold text-bark-700 group-hover:text-forest-700 block">Temperature regulation</span>
+              <span class="text-sm text-bark-400">Gets too hot or too cold easily</span>
+            </div>
+          </button>
+        </div>
+
+        <button type="button" id="step3-next" class="bg-forest-600 text-white px-8 py-3 rounded-full font-medium hover:bg-forest-700 transition-colors">
+          Continue →
+        </button>
+        <button type="button" id="step3-skip" class="ml-3 text-bark-500 hover:text-bark-700 font-medium transition-colors">
+          Skip — no special needs
+        </button>
+      </div>
+
+      <!-- Step 4: Location -->
+      <div id="step-4" class="step-panel hidden p-6 sm:p-8">
+        <h2 class="text-xl sm:text-2xl font-bold text-bark-800 mb-2" style="font-family: var(--font-heading)">
+          Where will the bed go?
+        </h2>
+        <p class="text-bark-500 mb-6">This helps us recommend the right style and material.</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <button type="button" data-location="bedroom" class="location-btn group p-5 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-left flex items-start gap-4">
+            <span class="text-2xl">🛏️</span>
+            <div>
+              <span class="font-semibold text-bark-700 group-hover:text-forest-700 block">Bedroom</span>
+              <span class="text-sm text-bark-400">Cosy, quiet sleeping spot</span>
+            </div>
+          </button>
+          <button type="button" data-location="living" class="location-btn group p-5 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-left flex items-start gap-4">
+            <span class="text-2xl">🛋️</span>
+            <div>
+              <span class="font-semibold text-bark-700 group-hover:text-forest-700 block">Living room</span>
+              <span class="text-sm text-bark-400">Main hang-out area, looks matter</span>
+            </div>
+          </button>
+          <button type="button" data-location="crate" class="location-btn group p-5 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-left flex items-start gap-4">
+            <span class="text-2xl">📦</span>
+            <div>
+              <span class="font-semibold text-bark-700 group-hover:text-forest-700 block">Crate</span>
+              <span class="text-sm text-bark-400">Needs to fit inside a crate</span>
+            </div>
+          </button>
+          <button type="button" data-location="outdoor" class="location-btn group p-5 rounded-xl border-2 border-bark-200 hover:border-forest-400 transition-all text-left flex items-start gap-4">
+            <span class="text-2xl">🌳</span>
+            <div>
+              <span class="font-semibold text-bark-700 group-hover:text-forest-700 block">Outdoor / Utility</span>
+              <span class="text-sm text-bark-400">Needs to be durable and weatherproof</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Results Panel -->
+      <div id="results" class="step-panel hidden">
+        <!-- Filled by JavaScript -->
+      </div>
+    </div>
+
+    <!-- Poppy endorsement -->
+    <div class="mt-8 flex flex-col sm:flex-row items-center gap-4 bg-cream-100 rounded-2xl p-5 border border-bark-200">
+      <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md shrink-0">
+        <img src="/images/poppy/poppy-blanket-teeth.jpg" alt="Poppy the Labrador under a blanket showing her teeth" class="w-full h-full object-cover" loading="lazy" />
+      </div>
+      <div>
+        <p class="font-semibold text-bark-700 text-lg" style="font-family: var(--font-heading)">Poppy says:</p>
+        <p class="text-bark-500 italic">"Every dog deserves the perfect bed — trust me, I've tested a few! My personal favourite is a big orthopedic one I can stretch right across. Bliss."</p>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="mt-12">
+      <h2 class="text-2xl sm:text-3xl font-bold text-bark-800 mb-6" style="font-family: var(--font-heading)">
+        Frequently Asked Questions
+      </h2>
+      <div class="space-y-4">
+        <details class="group bg-white rounded-xl border border-bark-200 overflow-hidden">
+          <summary class="flex items-center justify-between p-5 cursor-pointer font-semibold text-bark-700 hover:text-forest-700 transition-colors">
+            What size dog bed do I need?
+            <svg class="w-5 h-5 text-bark-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="px-5 pb-5 text-bark-600 leading-relaxed">
+            <p>Measure your dog from nose to tail base and add 15–30cm. For dogs that curl up, a round bed slightly larger than their curled size works. For stretchers, you need a bed at least as long as their full stretched length. As a rough guide: Small (under 10kg) → 60×45cm, Medium (10–25kg) → 90×60cm, Large (25–40kg) → 105×75cm, Extra-large (40kg+) → 120×90cm or bigger.</p>
+          </div>
+        </details>
+        <details class="group bg-white rounded-xl border border-bark-200 overflow-hidden">
+          <summary class="flex items-center justify-between p-5 cursor-pointer font-semibold text-bark-700 hover:text-forest-700 transition-colors">
+            What type of dog bed is best for joint problems?
+            <svg class="w-5 h-5 text-bark-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="px-5 pb-5 text-bark-600 leading-relaxed">
+            <p>Orthopedic memory foam beds are best for dogs with joint problems. They spread weight evenly and relieve pressure on sore joints. Look for beds with at least 7–10cm of memory foam and a removable, washable cover. Bolster beds with orthopedic bases are also great — the raised edges provide neck and head support.</p>
+          </div>
+        </details>
+        <details class="group bg-white rounded-xl border border-bark-200 overflow-hidden">
+          <summary class="flex items-center justify-between p-5 cursor-pointer font-semibold text-bark-700 hover:text-forest-700 transition-colors">
+            Should I get a bigger or smaller dog bed?
+            <svg class="w-5 h-5 text-bark-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="px-5 pb-5 text-bark-600 leading-relaxed">
+            <p>When in doubt, go bigger. A bed that's too small will be uncomfortable and your dog may avoid it. Most dogs prefer having room to stretch and change position. The exception is anxious dogs who may feel more secure in a snugger bolster-style bed.</p>
+          </div>
+        </details>
+        <details class="group bg-white rounded-xl border border-bark-200 overflow-hidden">
+          <summary class="flex items-center justify-between p-5 cursor-pointer font-semibold text-bark-700 hover:text-forest-700 transition-colors">
+            How often should I replace my dog's bed?
+            <svg class="w-5 h-5 text-bark-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="px-5 pb-5 text-bark-600 leading-relaxed">
+            <p>Replace your dog's bed every 1–3 years depending on quality and condition. Signs it's time: the filling has gone flat and doesn't spring back, there's a persistent smell even after washing, the cover is torn, or your dog has outgrown it.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- Related Articles -->
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold text-bark-800 mb-4" style="font-family: var(--font-heading)">Related Articles</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a href="/blog/dog-walking-essentials-kit-guide/" class="block p-4 bg-white rounded-xl border border-bark-200 hover:border-forest-300 hover:shadow-md transition-all">
+          <span class="text-sm text-forest-600 font-medium">🎒 Dog Lifestyle</span>
+          <h3 class="font-bold text-bark-700 mt-1">Dog Walking Essentials: The Complete UK Kit Guide</h3>
+        </a>
+        <a href="/blog/senior-dog-care-guide/" class="block p-4 bg-white rounded-xl border border-bark-200 hover:border-forest-300 hover:shadow-md transition-all">
+          <span class="text-sm text-forest-600 font-medium">🐕 Dog Health</span>
+          <h3 class="font-bold text-bark-700 mt-1">Senior Dog Care: The Complete UK Guide</h3>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // ===== Dog Bed Calculator Logic =====
+    const state = {
+      size: '',
+      style: '',
+      needs: [] as string[],
+      location: '',
+      weight: 0,
+      length: 0,
+    };
+
+    let currentStep = 1;
+
+    // Helpers
+    function $(sel: string) { return document.querySelector(sel); }
+    function $$(sel: string) { return document.querySelectorAll(sel); }
+
+    function showStep(n: number) {
+      currentStep = n;
+      $$('.step-panel').forEach(p => (p as HTMLElement).classList.add('hidden'));
+      const panel = $(`#step-${n}`) || $('#results');
+      if (panel) (panel as HTMLElement).classList.remove('hidden');
+
+      const pct = n <= 4 ? n * 25 : 100;
+      const bar = $('#progress-bar') as HTMLElement;
+      const label = $('#step-label') as HTMLElement;
+      const percent = $('#step-percent') as HTMLElement;
+      if (bar) bar.style.width = `${pct}%`;
+      if (label) label.textContent = n <= 4 ? `Step ${n} of 4` : 'Results';
+      if (percent) percent.textContent = `${pct}%`;
+
+      // Scroll to top of calculator
+      document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function setSelected(btns: NodeListOf<Element>, activeBtn: Element) {
+      btns.forEach(b => {
+        b.classList.remove('border-forest-500', 'bg-forest-50');
+        b.classList.add('border-bark-200');
+      });
+      activeBtn.classList.remove('border-bark-200');
+      activeBtn.classList.add('border-forest-500', 'bg-forest-50');
+    }
+
+    // Step 1: Size selection
+    $$('.size-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.size = (btn as HTMLElement).dataset.size || '';
+        setSelected($$('.size-btn'), btn);
+        setTimeout(() => showStep(2), 300);
+      });
+    });
+
+    // Manual toggle
+    $('#toggle-manual')?.addEventListener('click', () => {
+      const el = $('#manual-input') as HTMLElement;
+      el?.classList.toggle('hidden');
+    });
+
+    $('#manual-next')?.addEventListener('click', () => {
+      const w = parseFloat((document.getElementById('dog-weight') as HTMLInputElement)?.value || '0');
+      const l = parseFloat((document.getElementById('dog-length') as HTMLInputElement)?.value || '0');
+      if (w <= 0) {
+        alert('Please enter your dog\'s weight in kg.');
+        return;
+      }
+      state.weight = w;
+      state.length = l;
+      // Derive size from weight
+      if (w < 10) state.size = 'small';
+      else if (w < 25) state.size = 'medium';
+      else if (w < 40) state.size = 'large';
+      else state.size = 'xlarge';
+      showStep(2);
+    });
+
+    // Step 2: Sleeping style
+    $$('.style-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.style = (btn as HTMLElement).dataset.style || '';
+        setSelected($$('.style-btn'), btn);
+        setTimeout(() => showStep(3), 300);
+      });
+    });
+
+    // Step 3: Special needs (multi-select)
+    $$('.need-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const need = (btn as HTMLElement).dataset.need || '';
+        const idx = state.needs.indexOf(need);
+        if (idx > -1) {
+          state.needs.splice(idx, 1);
+          btn.classList.remove('border-forest-500', 'bg-forest-50');
+          btn.classList.add('border-bark-200');
+        } else {
+          state.needs.push(need);
+          btn.classList.remove('border-bark-200');
+          btn.classList.add('border-forest-500', 'bg-forest-50');
+        }
+      });
+    });
+
+    $('#step3-next')?.addEventListener('click', () => showStep(4));
+    $('#step3-skip')?.addEventListener('click', () => {
+      state.needs = [];
+      showStep(4);
+    });
+
+    // Step 4: Location
+    $$('.location-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.location = (btn as HTMLElement).dataset.location || '';
+        setSelected($$('.location-btn'), btn);
+        setTimeout(() => showResults(), 300);
+      });
+    });
+
+    // ===== Results Logic =====
+    function showResults() {
+      showStep(5);
+      const resultsEl = document.getElementById('results') as HTMLElement;
+      if (!resultsEl) return;
+      resultsEl.classList.remove('hidden');
+
+      const rec = getRecommendation();
+      resultsEl.innerHTML = buildResultsHTML(rec);
+
+      // Wire retake button
+      document.getElementById('retake-btn')?.addEventListener('click', () => {
+        state.size = ''; state.style = ''; state.needs = []; state.location = '';
+        state.weight = 0; state.length = 0;
+        // Reset all button styles
+        $$('.size-btn, .style-btn, .need-btn, .location-btn').forEach(b => {
+          b.classList.remove('border-forest-500', 'bg-forest-50');
+          b.classList.add('border-bark-200');
+        });
+        showStep(1);
+      });
+    }
+
+    interface Recommendation {
+      bedSize: string;
+      bedSizeLabel: string;
+      dimensions: string;
+      bedType: string;
+      bedTypeEmoji: string;
+      explanation: string;
+      products: { name: string; url: string; price: string; desc: string }[];
+    }
+
+    function getRecommendation(): Recommendation {
+      const { size, style, needs, location } = state;
+
+      // Bed size mapping
+      const sizeMap: Record<string, { label: string; dims: string }> = {
+        small: { label: 'Small', dims: '60 × 45 cm' },
+        medium: { label: 'Medium', dims: '90 × 60 cm' },
+        large: { label: 'Large', dims: '105 × 75 cm' },
+        xlarge: { label: 'Extra Large', dims: '120 × 90 cm' },
+      };
+
+      // Bump size up for stretched sleepers
+      let effectiveSize = size;
+      if (style === 'stretched' && size !== 'xlarge') {
+        const upgrade: Record<string, string> = { small: 'medium', medium: 'large', large: 'xlarge' };
+        effectiveSize = upgrade[size] || size;
+      }
+
+      const sizeInfo = sizeMap[effectiveSize] || sizeMap.large;
+
+      // Custom dimensions if user gave a length
+      let dims = sizeInfo.dims;
+      if (state.length > 0) {
+        const bedLength = Math.round(state.length + (style === 'stretched' ? 30 : 15));
+        const bedWidth = Math.round(bedLength * 0.65);
+        dims = `${bedLength} × ${bedWidth} cm (based on your measurements)`;
+      }
+
+      // Bed type logic
+      let bedType = 'Bolster bed';
+      let bedTypeEmoji = '🛋️';
+      let typeExplanation = '';
+
+      if (needs.includes('joints') || needs.includes('senior')) {
+        bedType = 'Orthopedic memory foam bed';
+        bedTypeEmoji = '💆';
+        typeExplanation = 'An orthopedic bed will provide the pressure relief and joint support your dog needs. Memory foam evenly distributes weight, reducing strain on sore joints and making it easier to get up.';
+      } else if (needs.includes('puppy')) {
+        bedType = 'Durable flat mat with removable cover';
+        bedTypeEmoji = '🧺';
+        typeExplanation = 'Puppies chew! A flat, durable mat with a washable cover is practical and affordable. You can upgrade to a nicer bed once they\'re through the teething phase. Consider sizing up so they can grow into it.';
+      } else if (needs.includes('temperature')) {
+        bedType = 'Raised/elevated cooling bed';
+        bedTypeEmoji = '🌬️';
+        typeExplanation = 'An elevated bed allows air to circulate underneath, keeping your dog cool in summer. They\'re also easier to clean and great for dogs who tend to overheat.';
+      } else if (style === 'curled') {
+        bedType = 'Bolster / donut bed';
+        bedTypeEmoji = '🍩';
+        typeExplanation = 'A bolster or donut bed with raised edges is perfect for curlers. The walls give your dog something to nestle against, creating a cosy, den-like feeling that most dogs love.';
+      } else if (style === 'stretched') {
+        bedType = 'Flat mattress-style bed';
+        bedTypeEmoji = '🛏️';
+        typeExplanation = 'A roomy flat mattress gives stretched-out sleepers the space they need. No raised edges getting in the way — just a big comfy surface to sprawl across.';
+      } else if (style === 'side') {
+        bedType = 'Bolster bed with low entry';
+        bedTypeEmoji = '🛋️';
+        typeExplanation = 'A bolster bed with one low or open side is ideal for side-sleepers. They can lean against the bolster for head support while still having room for their legs.';
+      } else {
+        bedType = 'Bolster bed';
+        bedTypeEmoji = '🛋️';
+        typeExplanation = 'A versatile bolster bed works well for dogs that change position. The raised edges offer support when curling up, but there\'s enough flat space in the middle for stretching.';
+      }
+
+      // Location adjustments
+      if (location === 'crate') {
+        typeExplanation += ' Since this is going in a crate, make sure to check the internal dimensions of your crate and choose a bed or mat that fits snugly inside.';
+      } else if (location === 'outdoor') {
+        typeExplanation += ' For outdoor use, look for a waterproof or water-resistant base and a cover material that can handle the elements. Raised beds are brilliant outdoors.';
+        if (!needs.includes('temperature')) {
+          bedType = 'Raised waterproof bed';
+          bedTypeEmoji = '☀️';
+        }
+      } else if (location === 'living') {
+        typeExplanation += ' For the living room, you\'ll want something that looks decent alongside your furniture — many premium beds come in neutral tones and stylish designs.';
+      }
+
+      // Product recommendations based on type and size
+      const products = getProducts(effectiveSize, bedType, needs, location);
+
+      return {
+        bedSize: effectiveSize,
+        bedSizeLabel: sizeInfo.label,
+        dimensions: dims,
+        bedType,
+        bedTypeEmoji,
+        explanation: typeExplanation,
+        products,
+      };
+    }
+
+    function getProducts(size: string, bedType: string, needs: string[], location: string) {
+      const tag = 'mymuttlife-21';
+
+      // Curated Amazon UK product recommendations
+      const orthopedicProducts = [
+        {
+          name: 'Bedsure Orthopedic Dog Bed',
+          url: `https://www.amazon.co.uk/s?k=bedsure+orthopedic+dog+bed+${size === 'xlarge' ? 'extra+large' : size}&tag=${tag}`,
+          price: '£30–£50',
+          desc: 'Memory foam base with egg-crate design for pressure relief. Removable, machine-washable cover. Brilliant value.'
+        },
+        {
+          name: 'PetFusion Ultimate Dog Bed',
+          url: `https://www.amazon.co.uk/s?k=petfusion+ultimate+dog+bed+${size === 'xlarge' ? 'extra+large' : size}&tag=${tag}`,
+          price: '£70–£110',
+          desc: 'Premium 10cm memory foam with bolster support. Water-resistant liner and YKK zippers. A favourite on vet recommendation lists.'
+        },
+        {
+          name: 'Furhaven Orthopedic Dog Bed',
+          url: `https://www.amazon.co.uk/s?k=furhaven+orthopedic+dog+bed+${size === 'xlarge' ? 'extra+large' : size}&tag=${tag}`,
+          price: '£35–£65',
+          desc: 'L-shaped bolster with orthopedic foam mattress. Great for side-sleepers and dogs who like to lean.'
+        },
+        {
+          name: 'Silentnight Orthopaedic Dog Bed',
+          url: `https://www.amazon.co.uk/s?k=silentnight+orthopaedic+dog+bed+${size === 'xlarge' ? 'extra+large' : size}&tag=${tag}`,
+          price: '£40–£70',
+          desc: 'From the trusted mattress brand. Supportive foam with anti-microbial cover. Excellent for senior dogs.'
+        }
+      ];
+
+      const bolsterProducts = [
+        {
+          name: 'Danish Design Bobble Deluxe Slumber Bed',
+          url: `https://www.amazon.co.uk/s?k=danish+design+slumber+dog+bed+${size === 'xlarge' ? 'extra+large' : size}&tag=${tag}`,
+          price: '£30–£55',
+          desc: 'Classic bolster bed with supersoft filling. Machine washable and available in smart colours. A UK favourite.'
+        },
+        {
+          name: 'Bunty Deluxe Soft Dog Bed',
+          url: `https://www.amazon.co.uk/s?k=bunty+deluxe+dog+bed+${size === 'xlarge' ? 'extra+large' : size}&tag=${tag}`,
+          price: '£18–£35',
+          desc: 'Affordable bolster bed with non-slip base. Great starter bed — surprisingly good quality for the price.'
+        },
+        {
+          name: 'Ancol Sleepy Paws Oval Bed',
+          url: `https://www.amazon.co.uk/s?k=ancol+sleepy+paws+dog+bed+${size === 'xlarge' ? 'extra+large' : size}&tag=${tag}`,
+          price: '£20–£40',
+          desc: 'Cosy oval shape perfect for curled-up sleepers. Plush faux fur lining that dogs love.'
+        },
+        {
+          name: 'P&L Country Dog Heavy Duty Oval Bed',
+          url: `https://www.amazon.co.uk/s?k=p+l+country+dog+oval+bed+${size === 'xlarge' ? 'extra+large' : size}&tag=${tag}`,
+          price: '£30–£55',
+          desc: 'Tough waterproof base with luxury fleece top. Machine washable — great for muddy dogs.'
+        }
+      ];
+
+      const flatProducts = [
+        {
+          name: 'Bedsure Flat Dog Bed Mattress',
+          url: `https://www.amazon.co.uk/s?k=bedsure+flat+dog+bed+mattress+${size === 'xlarge' ? 'extra+large' : size}&tag=${tag}`,
+          price: '£20–£40',
+          desc: 'No-frills flat mattress with plush top and non-slip bottom. Perfect for stretched-out sleepers who need room.'
+        },
+        {
+          name: 'HiK9 Dog Bed Mat',
+          url: `https://www.amazon.co.uk/s?k=hik9+dog+bed+mat+${size === 'xlarge' ? 'extra+large' : size}&tag=${tag}`,
+          price: '£25–£45',
+          desc: 'Washable quilted mat with anti-slip base. Works on its own or as a crate liner. Very practical.'
+        },
+        {
+          name: 'Paws & Pals Self-Warming Dog Mat',
+          url: `https://www.amazon.co.uk/s?k=self+warming+dog+bed+mat+${size === 'xlarge' ? 'extra+large' : size}&tag=${tag}`,
+          price: '£15–£30',
+          desc: 'Self-warming thermal material reflects body heat. Great for chilly nights without needing electricity.'
+        },
+        {
+          name: 'Puppy Training Bed - Tough & Washable',
+          url: `https://www.amazon.co.uk/s?k=puppy+bed+chew+resistant+washable+${size === 'xlarge' ? 'extra+large' : size}&tag=${tag}`,
+          price: '£15–£25',
+          desc: 'Budget-friendly and designed to survive puppy teeth. Easy to wash and replace if needed.'
+        }
+      ];
+
+      const raisedProducts = [
+        {
+          name: 'Coolaroo Elevated Pet Bed',
+          url: `https://www.amazon.co.uk/s?k=coolaroo+elevated+pet+bed+${size === 'xlarge' ? 'extra+large' : size}&tag=${tag}`,
+          price: '£25–£50',
+          desc: 'Breathable mesh on a sturdy steel frame. The original elevated bed — brilliant for hot dogs and outdoor use.'
+        },
+        {
+          name: 'Amazon Basics Elevated Cooling Bed',
+          url: `https://www.amazon.co.uk/s?k=amazon+basics+elevated+dog+bed+${size === 'xlarge' ? 'extra+large' : size}&tag=${tag}`,
+          price: '£20–£40',
+          desc: 'No-frills raised bed with iron frame and breathable mesh. Easy to assemble, easy to clean. Great value.'
+        },
+        {
+          name: 'HiK9 Raised Dog Bed',
+          url: `https://www.amazon.co.uk/s?k=hik9+raised+dog+bed+${size === 'xlarge' ? 'extra+large' : size}&tag=${tag}`,
+          price: '£50–£90',
+          desc: 'Premium raised bed made in the UK. Aluminium frame that won\'t rust — ideal for outdoors. Comes with a 10-year guarantee.'
+        },
+        {
+          name: 'PawHut Raised Pet Bed with Canopy',
+          url: `https://www.amazon.co.uk/s?k=raised+dog+bed+with+canopy+outdoor+${size === 'xlarge' ? 'extra+large' : size}&tag=${tag}`,
+          price: '£30–£55',
+          desc: 'Elevated bed with detachable canopy for shade. Perfect for sunny gardens and patios.'
+        }
+      ];
+
+      // Choose products based on bed type
+      if (bedType.includes('Orthopedic') || bedType.includes('memory foam')) return orthopedicProducts;
+      if (bedType.includes('Raised') || bedType.includes('elevated') || bedType.includes('cooling') || bedType.includes('waterproof')) return raisedProducts;
+      if (bedType.includes('Flat') || bedType.includes('mat') || bedType.includes('Durable flat')) return flatProducts;
+      return bolsterProducts;
+    }
+
+    function buildResultsHTML(rec: Recommendation): string {
+      const productsHTML = rec.products.map(p => `
+        <a href="${p.url}" target="_blank" rel="noopener noreferrer nofollow" class="block p-4 bg-white rounded-xl border border-bark-200 hover:border-forest-300 hover:shadow-md transition-all">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <h4 class="font-bold text-bark-800 mb-1">${p.name}</h4>
+              <p class="text-sm text-bark-500 mb-2">${p.desc}</p>
+              <span class="text-forest-600 font-semibold text-sm">${p.price}</span>
+            </div>
+            <span class="shrink-0 bg-forest-600 text-white text-xs px-3 py-1.5 rounded-full font-medium whitespace-nowrap">
+              View on Amazon →
+            </span>
+          </div>
+        </a>
+      `).join('');
+
+      return `
+        <div class="p-6 sm:p-8">
+          <div class="text-center mb-8">
+            <span class="text-5xl block mb-3">${rec.bedTypeEmoji}</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-bark-800 mb-2" style="font-family: var(--font-heading)">
+              Your Perfect Dog Bed
+            </h2>
+            <p class="text-bark-500">Based on your answers, here's what we recommend:</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+            <div class="bg-forest-50 rounded-xl p-5 border border-forest-200 text-center">
+              <span class="text-sm uppercase tracking-wider font-medium text-forest-600">Recommended Size</span>
+              <p class="text-2xl font-bold text-forest-800 mt-1" style="font-family: var(--font-heading)">${rec.bedSizeLabel}</p>
+              <p class="text-sm text-forest-600 mt-1">${rec.dimensions}</p>
+            </div>
+            <div class="bg-paw-50 rounded-xl p-5 border border-paw-200 text-center">
+              <span class="text-sm uppercase tracking-wider font-medium text-paw-600">Recommended Type</span>
+              <p class="text-2xl font-bold text-paw-800 mt-1" style="font-family: var(--font-heading)">${rec.bedType}</p>
+            </div>
+          </div>
+
+          <div class="bg-cream-100 rounded-xl p-5 border border-bark-200 mb-8">
+            <h3 class="font-bold text-bark-800 mb-2" style="font-family: var(--font-heading)">💡 Why this bed?</h3>
+            <p class="text-bark-600 leading-relaxed">${rec.explanation}</p>
+          </div>
+
+          <div class="mb-8">
+            <h3 class="text-xl font-bold text-bark-800 mb-4" style="font-family: var(--font-heading)">
+              🛒 Top Picks for Your Dog
+            </h3>
+            <p class="text-bark-500 text-sm mb-4">Prices are approximate. These are affiliate links — we may earn a small commission at no extra cost to you. <a href="/affiliate-disclaimer/" class="text-forest-600 underline">Learn more</a>.</p>
+            <div class="space-y-3">
+              ${productsHTML}
+            </div>
+          </div>
+
+          <div class="text-center pt-4 border-t border-bark-200">
+            <button id="retake-btn" class="text-forest-600 font-medium hover:text-forest-800 transition-colors">
+              ← Retake the quiz
+            </button>
+          </div>
+        </div>
+      `;
+    }
+  </script>
+</BaseLayout>

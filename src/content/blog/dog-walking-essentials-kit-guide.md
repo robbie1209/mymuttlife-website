@@ -7,7 +7,7 @@ readTime: "10 min read"
 publishDate: "2026-02-01"
 modifiedDate: "2026-02-11"
 slug: "dog-walking-essentials-kit-guide"
-image: "/images/blog-dog-walking.jpg"
+image: "/images/poppy/poppy-walkway.jpg"
 ---
 
 
@@ -184,6 +184,12 @@ Having all three means you're covered for any walk, any weather, without having 
 - [ ] Pet-safe sunscreen
 - [ ] Cooling bandana
 - [ ] Double water supply
+
+---
+
+> 🛏️ **While you're sorting your dog's kit** — have you got them the right bed to come home to? [Try our free Dog Bed Size Calculator](/tools/dog-bed-calculator/) to find the perfect match.
+
+---
 
 ## Final Thoughts
 

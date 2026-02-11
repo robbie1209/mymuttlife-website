@@ -13,8 +13,8 @@ const recent = articles.filter(a => !a.featured).slice(0, 4);
     <!-- Background image -->
     <div class="absolute inset-0">
       <img
-        src="/images/hero-dog.jpg"
-        alt="Happy dog in warm sunlight"
+        src="/images/poppy/poppy-grass-classic.jpg"
+        alt="Poppy the black Labrador on grass with tongue out — the face behind My Mutt Life"
         class="w-full h-full object-cover"
         loading="eager"
         decoding="async"
@@ -105,8 +105,8 @@ const recent = articles.filter(a => !a.featured).slice(0, 4);
     <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
       <div class="w-full md:w-2/5">
         <img
-          src="/images/owner-with-dog.jpg"
-          alt="Dog owner walking with their happy dog"
+          src="/images/poppy/poppy-garden-portrait.jpg"
+          alt="Poppy the black Labrador sitting in the garden with her tongue out"
           class="rounded-2xl shadow-lg w-full h-64 md:h-80 object-cover"
           loading="lazy"
           decoding="async"
@@ -114,11 +114,12 @@ const recent = articles.filter(a => !a.featured).slice(0, 4);
       </div>
       <div class="w-full md:w-3/5 text-center md:text-left">
         <h2 class="text-2xl sm:text-3xl font-bold text-bark-800 mb-4" style="font-family: var(--font-heading)">
-          Built by Dog Lovers, for Dog Lovers
+          Meet Poppy — The Dog Behind the Site
         </h2>
         <p class="text-bark-600 text-lg leading-relaxed mb-6">
           My Mutt Life started with one simple idea: dog owners deserve honest, practical advice — not sponsored nonsense.
-          Inspired by Poppy, our beloved black Labrador, everything we write comes from real experience and genuine research.
+          Inspired by Poppy, our 9-year-old black Labrador, everything we write comes from real experience and genuine research.
+          She's our chief product tester, our motivational paw-ker, and the face behind everything we do.
         </p>
         <a href="/about/" class="text-forest-600 font-semibold hover:text-forest-800 transition-colors inline-flex items-center gap-1">
           Our Story
@@ -126,6 +127,31 @@ const recent = articles.filter(a => !a.featured).slice(0, 4);
         </a>
       </div>
     </div>
+  </section>
+
+  <!-- Dog Bed Calculator CTA -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <a href="/tools/dog-bed-calculator/" class="block group">
+      <div class="relative bg-gradient-to-r from-forest-600 to-forest-700 rounded-2xl overflow-hidden p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6 hover:shadow-xl transition-shadow">
+        <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-4 border-white/30 shrink-0">
+          <img src="/images/poppy/poppy-blanket-teeth.jpg" alt="Poppy under a blanket" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="text-center sm:text-left flex-1">
+          <h2 class="text-xl sm:text-2xl font-bold text-white mb-2" style="font-family: var(--font-heading)">
+            🛏️ Not sure what bed your dog needs?
+          </h2>
+          <p class="text-forest-100 text-sm sm:text-base">
+            Try our free Dog Bed Size Calculator — answer 4 quick questions and get a personalised recommendation with exact dimensions and top product picks.
+          </p>
+        </div>
+        <div class="shrink-0">
+          <span class="inline-flex items-center gap-2 bg-white text-forest-700 px-6 py-3 rounded-full font-semibold group-hover:bg-cream-100 transition-colors text-sm sm:text-base">
+            Try it free
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+          </span>
+        </div>
+      </div>
+    </a>
   </section>
 
   <!-- Topics Grid -->
@@ -136,10 +162,10 @@ const recent = articles.filter(a => !a.featured).slice(0, 4);
       </h2>
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {[
-          { image: '/images/category-nutrition.jpg', title: 'Dog Nutrition', desc: 'Breed-specific food guides and honest reviews' },
+          { image: '/images/poppy/poppy-smiling-kitchen.jpg', title: 'Dog Nutrition', desc: 'Breed-specific food guides and honest reviews' },
           { image: '/images/category-health.jpg', title: 'Dog Health', desc: 'Supplements, senior care, and preventive health' },
           { image: '/images/category-insurance.jpg', title: 'Insurance', desc: 'UK provider comparisons to find the right cover' },
-          { image: '/images/category-lifestyle.jpg', title: 'Lifestyle', desc: 'Walking gear, exercise guides, and seasonal tips' },
+          { image: '/images/poppy/poppy-walkway.jpg', title: 'Lifestyle', desc: 'Walking gear, exercise guides, and seasonal tips' },
         ].map(topic => (
           <div class="group bg-white rounded-xl overflow-hidden border border-bark-200 hover:border-forest-300 hover:shadow-md transition-all">
             <div class="h-32 sm:h-40 overflow-hidden">
