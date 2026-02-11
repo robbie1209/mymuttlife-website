@@ -1,0 +1,53 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-bark-800 text-bark-200 mt-16">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <span class="text-2xl">🐾</span>
+          <span class="text-xl font-bold text-white" style="font-family: var(--font-heading)">My Mutt Life</span>
+        </div>
+        <p class="text-bark-300 text-sm leading-relaxed">
+          Where style meets wagging tails. Your trusted UK guide to dog care, nutrition, and wellbeing.
+          Inspired by Poppy, our beloved black Lab.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Explore</h3>
+        <ul class="space-y-2">
+          <li><a href="/blog/" class="text-bark-300 hover:text-white transition-colors text-sm">All Articles</a></li>
+          <li><a href="/about/" class="text-bark-300 hover:text-white transition-colors text-sm">About Us</a></li>
+          <li><a href="/privacy-policy/" class="text-bark-300 hover:text-white transition-colors text-sm">Privacy Policy</a></li>
+          <li><a href="/affiliate-disclaimer/" class="text-bark-300 hover:text-white transition-colors text-sm">Affiliate Disclaimer</a></li>
+        </ul>
+      </div>
+
+      <!-- Popular Topics -->
+      <div>
+        <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Popular Topics</h3>
+        <ul class="space-y-2">
+          <li><a href="/blog/best-dog-food-labradors-uk/" class="text-bark-300 hover:text-white transition-colors text-sm">Best Dog Food for Labradors</a></li>
+          <li><a href="/blog/best-dog-insurance-uk/" class="text-bark-300 hover:text-white transition-colors text-sm">Dog Insurance Compared</a></li>
+          <li><a href="/blog/senior-dog-care-guide/" class="text-bark-300 hover:text-white transition-colors text-sm">Senior Dog Care</a></li>
+          <li><a href="/blog/dog-exercise-breed-guide/" class="text-bark-300 hover:text-white transition-colors text-sm">Exercise by Breed</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-10 pt-8 border-t border-bark-700 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-bark-400 text-xs">
+        &copy; {year} My Mutt Life. All rights reserved.
+      </p>
+      <p class="text-bark-400 text-xs text-center sm:text-right">
+        My Mutt Life is a participant in affiliate programmes. We may earn commission from qualifying purchases.
+        <a href="/affiliate-disclaimer/" class="underline hover:text-white">Learn more</a>.
+      </p>
+    </div>
+  </div>
+</footer>

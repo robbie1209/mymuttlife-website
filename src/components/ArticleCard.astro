@@ -1,0 +1,54 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  category: string;
+  readTime: string;
+  emoji: string;
+  featured?: boolean;
+}
+
+const { title, description, slug, category, readTime, emoji, featured = false } = Astro.props;
+---
+
+<a
+  href={`/blog/${slug}/`}
+  class:list={[
+    'group block bg-white rounded-2xl border border-bark-200 overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-forest-300 hover:-translate-y-1',
+    featured && 'sm:col-span-2'
+  ]}
+>
+  <!-- Emoji hero -->
+  <div class:list={[
+    'bg-gradient-to-br from-forest-50 to-cream-100 flex items-center justify-center',
+    featured ? 'h-40 sm:h-48' : 'h-32 sm:h-36'
+  ]}>
+    <span class:list={[
+      'group-hover:scale-110 transition-transform duration-300',
+      featured ? 'text-6xl sm:text-7xl' : 'text-5xl sm:text-6xl'
+    ]}>
+      {emoji}
+    </span>
+  </div>
+
+  <div class="p-5 sm:p-6">
+    <div class="flex items-center gap-2 mb-3">
+      <span class="text-xs font-medium bg-forest-100 text-forest-700 px-2.5 py-0.5 rounded-full">{category}</span>
+      <span class="text-xs text-bark-400">{readTime}</span>
+    </div>
+    <h3 class:list={[
+      'font-bold text-bark-800 group-hover:text-forest-700 transition-colors leading-snug mb-2',
+      featured ? 'text-xl sm:text-2xl' : 'text-lg'
+    ]} style="font-family: var(--font-heading)">
+      {title}
+    </h3>
+    <p class="text-bark-500 text-sm leading-relaxed line-clamp-3">
+      {description}
+    </p>
+    <span class="inline-flex items-center gap-1 text-forest-600 text-sm font-medium mt-4 group-hover:gap-2 transition-all">
+      Read article
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+    </span>
+  </div>
+</a>

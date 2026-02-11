@@ -1,0 +1,115 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import AffiliateDisclosure from '../components/AffiliateDisclosure.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import RelatedArticles from '../components/RelatedArticles.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  publishDate: string;
+  modifiedDate: string;
+  slug: string;
+  category: string;
+  readTime: string;
+  headings: { depth: number; slug: string; text: string }[];
+  relatedSlugs?: string[];
+}
+
+const {
+  title,
+  description,
+  publishDate,
+  modifiedDate,
+  slug,
+  category,
+  readTime,
+  headings,
+  relatedSlugs = []
+} = Astro.props;
+
+const siteUrl = 'https://mymuttlife.co.uk';
+const canonicalUrl = `${siteUrl}/blog/${slug}/`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "url": canonicalUrl,
+  "datePublished": publishDate,
+  "dateModified": modifiedDate,
+  "author": {
+    "@type": "Organization",
+    "name": "My Mutt Life",
+    "url": siteUrl
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My Mutt Life",
+    "url": siteUrl
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalUrl
+  }
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalUrl={canonicalUrl}
+  article={true}
+  publishDate={publishDate}
+  modifiedDate={modifiedDate}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <!-- Article header -->
+    <header class="mb-8">
+      <div class="flex items-center gap-3 mb-4 text-sm">
+        <span class="bg-forest-100 text-forest-700 px-3 py-1 rounded-full font-medium">{category}</span>
+        <span class="text-bark-400">•</span>
+        <time class="text-bark-500" datetime={publishDate}>
+          {new Date(publishDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+        </time>
+        <span class="text-bark-400">•</span>
+        <span class="text-bark-500">{readTime}</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-bark-800 leading-tight mb-4" style="font-family: var(--font-heading)">
+        {title}
+      </h1>
+      <p class="text-lg text-bark-500 leading-relaxed">{description}</p>
+    </header>
+
+    <!-- Affiliate disclosure -->
+    <AffiliateDisclosure />
+
+    <!-- Table of Contents -->
+    {headings.length > 2 && (
+      <TableOfContents headings={headings} />
+    )}
+
+    <!-- Article body -->
+    <div class="article-content">
+      <slot />
+    </div>
+
+    <!-- Related articles -->
+    {relatedSlugs.length > 0 && (
+      <RelatedArticles slugs={relatedSlugs} />
+    )}
+
+    <!-- Bottom CTA -->
+    <div class="mt-12 p-6 sm:p-8 bg-gradient-to-br from-forest-50 to-cream-100 rounded-2xl border border-forest-200 text-center">
+      <p class="text-2xl mb-2">🐾</p>
+      <h3 class="text-xl font-bold text-forest-700 mb-2" style="font-family: var(--font-heading)">Enjoyed this article?</h3>
+      <p class="text-bark-600 mb-4">Browse more guides to keep your dog happy and healthy.</p>
+      <a href="/blog/" class="inline-block bg-forest-600 text-white px-6 py-3 rounded-full font-medium hover:bg-forest-700 transition-colors">
+        Browse All Articles
+      </a>
+    </div>
+  </article>
+</BaseLayout>

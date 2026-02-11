@@ -1,0 +1,206 @@
+@import "tailwindcss";
+
+@theme {
+  /* Warm earthy colour palette */
+  --color-forest-50: #f0f7f0;
+  --color-forest-100: #dceedd;
+  --color-forest-200: #b8ddb9;
+  --color-forest-300: #86c488;
+  --color-forest-400: #5aa95d;
+  --color-forest-500: #3d8b40;
+  --color-forest-600: #2d6f30;
+  --color-forest-700: #255928;
+  --color-forest-800: #214722;
+  --color-forest-900: #1c3b1e;
+
+  --color-bark-50: #faf6f1;
+  --color-bark-100: #f2e8d8;
+  --color-bark-200: #e4cdb0;
+  --color-bark-300: #d4ad80;
+  --color-bark-400: #c69058;
+  --color-bark-500: #b97a3f;
+  --color-bark-600: #a56434;
+  --color-bark-700: #894d2d;
+  --color-bark-800: #704029;
+  --color-bark-900: #5d3625;
+
+  --color-cream-50: #fefdf8;
+  --color-cream-100: #fdf9ed;
+  --color-cream-200: #faf2d5;
+  --color-cream-300: #f5e6b3;
+  --color-cream-400: #efd68b;
+  --color-cream-500: #e8c463;
+  --color-cream-600: #d4a83c;
+  --color-cream-700: #b18a2e;
+  --color-cream-800: #916e29;
+  --color-cream-900: #775a25;
+
+  --color-paw-50: #fdf7f0;
+  --color-paw-100: #faecd9;
+  --color-paw-200: #f4d5b1;
+  --color-paw-300: #edb97f;
+  --color-paw-400: #e4964b;
+  --color-paw-500: #dd7d2b;
+  --color-paw-600: #ce6520;
+  --color-paw-700: #ab4e1c;
+  --color-paw-800: #893f1e;
+  --color-paw-900: #6f351b;
+
+  --font-heading: 'Georgia', 'Times New Roman', serif;
+  --font-body: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* Base styles */
+body {
+  font-family: var(--font-body);
+  color: #3d3228;
+  background-color: var(--color-cream-50);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-bark-800);
+}
+
+/* Article content styles */
+.article-content h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-forest-200);
+  color: var(--color-forest-700);
+}
+
+.article-content h3 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-bark-700);
+}
+
+.article-content h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-bark-600);
+}
+
+.article-content p {
+  margin-bottom: 1.25rem;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.article-content ul, .article-content ol {
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.article-content ul {
+  list-style-type: disc;
+}
+
+.article-content ol {
+  list-style-type: decimal;
+}
+
+.article-content li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+.article-content a {
+  color: var(--color-forest-600);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+
+.article-content a:hover {
+  color: var(--color-forest-800);
+}
+
+.article-content blockquote {
+  border-left: 4px solid var(--color-forest-400);
+  background-color: var(--color-forest-50);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-style: italic;
+}
+
+.article-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+  overflow-x: auto;
+  display: block;
+}
+
+.article-content table th {
+  background-color: var(--color-forest-600);
+  color: white;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-family: var(--font-body);
+}
+
+.article-content table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-bark-200);
+}
+
+.article-content table tr:nth-child(even) {
+  background-color: var(--color-cream-100);
+}
+
+.article-content table tr:hover {
+  background-color: var(--color-forest-50);
+}
+
+.article-content strong {
+  color: var(--color-bark-800);
+  font-weight: 600;
+}
+
+.article-content hr {
+  border: none;
+  border-top: 2px solid var(--color-bark-200);
+  margin: 2.5rem 0;
+}
+
+.article-content em {
+  font-style: italic;
+}
+
+/* Paw print decorative element */
+.paw-divider::after {
+  content: '🐾';
+  display: block;
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  opacity: 0.5;
+}
+
+/* Affiliate disclosure box */
+.affiliate-disclosure {
+  background: linear-gradient(135deg, var(--color-paw-50), var(--color-cream-100));
+  border: 1px solid var(--color-paw-300);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  font-size: 0.9rem;
+  color: var(--color-bark-700);
+  margin-bottom: 2rem;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}

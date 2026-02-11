@@ -1,0 +1,85 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  article?: boolean;
+  publishDate?: string;
+  modifiedDate?: string;
+  author?: string;
+}
+
+const {
+  title,
+  description = "My Mutt Life — Your trusted guide to dog care, nutrition, and wellbeing in the UK. Expert advice for happy, healthy dogs.",
+  canonicalUrl,
+  ogImage = '/og-default.png',
+  article = false,
+  publishDate,
+  modifiedDate,
+  author = 'My Mutt Life'
+} = Astro.props;
+
+const siteUrl = 'https://mymuttlife.co.uk';
+const fullCanonical = canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
+const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, siteUrl).href;
+---
+
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content={description}>
+  <title>{title} | My Mutt Life</title>
+  <link rel="canonical" href={fullCanonical}>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content={article ? 'article' : 'website'}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={fullCanonical}>
+  <meta property="og:image" content={fullOgImage}>
+  <meta property="og:site_name" content="My Mutt Life">
+  <meta property="og:locale" content="en_GB">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={fullOgImage}>
+
+  {article && publishDate && (
+    <meta property="article:published_time" content={publishDate}>
+  )}
+  {article && modifiedDate && (
+    <meta property="article:modified_time" content={modifiedDate}>
+  )}
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Schema.org - WebSite -->
+  {!article && (
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "My Mutt Life",
+      "url": siteUrl,
+      "description": "Your trusted guide to dog care, nutrition, and wellbeing in the UK."
+    })} />
+  )}
+</head>
+<body class="min-h-screen flex flex-col">
+  <Header />
+  <main class="flex-1">
+    <slot />
+  </main>
+  <Footer />
+</body>
+</html>
