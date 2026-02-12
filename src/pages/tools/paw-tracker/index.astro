@@ -133,6 +133,23 @@ const toolSchema = {
               </button>
             </div>
           </div>
+          <!-- Cloud Sync Status -->
+          <div id="cloud-sync-bar" class="mt-3 pt-3 border-t border-bark-100">
+            <div id="sync-not-connected" class="flex items-center justify-between">
+              <span class="text-xs text-bark-400">💾 Data saved locally only</span>
+              <button type="button" id="cloud-save-btn"
+                class="text-xs font-medium text-forest-600 hover:text-forest-800 border border-forest-300 px-3 py-1 rounded-full transition-colors">
+                ☁️ Save &amp; sync across devices
+              </button>
+            </div>
+            <div id="sync-connected" class="hidden flex items-center justify-between">
+              <span class="text-xs text-forest-600" id="sync-status-text">☁️ Synced</span>
+              <button type="button" id="magic-link-btn"
+                class="text-xs font-medium text-forest-600 hover:text-forest-800 border border-forest-300 px-3 py-1 rounded-full transition-colors">
+                📱 Access from another device
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -403,35 +420,69 @@ const toolSchema = {
           </div>
         </div>
 
-        <!-- Email Capture -->
-        <div id="email-capture" class="mt-6 bg-gradient-to-br from-forest-50 via-cream-50 to-paw-50 rounded-2xl border border-forest-200 p-6">
-          <div class="text-center mb-4">
-            <span class="text-3xl">📧</span>
+        <!-- Cloud Save / Magic Link Section -->
+        <div id="cloud-save-section" class="mt-6 bg-gradient-to-br from-forest-50 via-cream-50 to-paw-50 rounded-2xl border border-forest-200 p-6">
+          <!-- Not synced: prompt to save -->
+          <div id="cloud-prompt" class="text-center">
+            <span class="text-3xl">☁️</span>
             <h3 class="text-lg font-bold text-bark-800 mt-2" style="font-family: var(--font-heading)">
-              Save Your Dog's Profile & Get Weekly Tips
+              Save &amp; Sync Across Devices
             </h3>
             <p class="text-sm text-bark-500 mt-1">
-              Get personalised nutrition tips, product recommendations, and seasonal advice for <span id="email-dog-name">your dog</span> — free every week.
+              Save <span id="cloud-dog-name">your dog</span>'s profile to the cloud. Access from your phone, tablet, or any device.
             </p>
-          </div>
-          <div id="email-form" class="max-w-md mx-auto">
-            <div class="flex flex-col sm:flex-row gap-2">
-              <input type="text" id="email-name" placeholder="Your name"
-                class="flex-1 px-4 py-2.5 rounded-lg border border-bark-300 focus:border-forest-500 focus:ring-2 focus:ring-forest-200 outline-none transition text-sm" />
-              <input type="email" id="email-address" placeholder="your@email.com"
-                class="flex-1 px-4 py-2.5 rounded-lg border border-bark-300 focus:border-forest-500 focus:ring-2 focus:ring-forest-200 outline-none transition text-sm" />
+            <div id="cloud-email-form" class="max-w-sm mx-auto mt-4">
+              <input type="email" id="cloud-email" placeholder="your@email.com"
+                class="w-full px-4 py-2.5 rounded-lg border border-bark-300 focus:border-forest-500 focus:ring-2 focus:ring-forest-200 outline-none transition text-sm" />
+              <button type="button" id="cloud-save-submit-btn"
+                class="w-full mt-2 bg-forest-600 text-white px-6 py-3 rounded-full font-medium hover:bg-forest-700 transition-colors shadow-sm">
+                Save to Cloud 🐾
+              </button>
+              <p class="text-xs text-bark-400 text-center mt-2">We'll email you a magic link to access your profile on other devices. No password needed.</p>
             </div>
-            <button type="button" id="email-submit-btn"
-              class="w-full mt-3 bg-forest-600 text-white px-6 py-3 rounded-full font-medium hover:bg-forest-700 transition-colors shadow-sm">
-              Get My Free Tips 🐾
-            </button>
-            <p class="text-xs text-bark-400 text-center mt-2">No spam, ever. Unsubscribe anytime. We respect your privacy.</p>
+            <div id="cloud-save-saving" class="hidden mt-4">
+              <div class="animate-pulse text-forest-600 text-sm">Saving...</div>
+            </div>
           </div>
-          <div id="email-success" class="hidden text-center">
-            <span class="text-4xl block mb-2">🎉</span>
-            <p class="font-bold text-forest-700 text-lg">You're in!</p>
-            <p class="text-sm text-bark-500 mt-1">Check your inbox for your dog's personalised nutrition guide.</p>
+          <!-- Already synced: show status -->
+          <div id="cloud-synced" class="hidden text-center">
+            <span class="text-4xl block mb-2">✅</span>
+            <p class="font-bold text-forest-700 text-lg">Synced to Cloud</p>
+            <p class="text-sm text-bark-500 mt-1" id="cloud-synced-email"></p>
+            <p class="text-xs text-bark-400 mt-1" id="cloud-last-synced"></p>
+            <div class="flex flex-col sm:flex-row gap-2 justify-center mt-4 max-w-sm mx-auto">
+              <button type="button" id="send-magic-link-btn"
+                class="flex-1 text-sm font-medium text-forest-600 border border-forest-300 px-4 py-2 rounded-full hover:bg-forest-50 transition-colors">
+                📱 Send magic link
+              </button>
+            </div>
+            <div id="magic-link-sent" class="hidden mt-3">
+              <p class="text-sm text-forest-600">✉️ Check your inbox for the magic link!</p>
+            </div>
           </div>
+          <!-- Magic link login -->
+          <div id="cloud-magic-login" class="hidden text-center">
+            <span class="text-3xl">🔑</span>
+            <h3 class="text-lg font-bold text-bark-800 mt-2" style="font-family: var(--font-heading)">
+              Already have an account?
+            </h3>
+            <div class="max-w-sm mx-auto mt-3">
+              <input type="email" id="magic-login-email" placeholder="your@email.com"
+                class="w-full px-4 py-2.5 rounded-lg border border-bark-300 focus:border-forest-500 focus:ring-2 focus:ring-forest-200 outline-none transition text-sm" />
+              <button type="button" id="magic-login-btn"
+                class="w-full mt-2 text-sm font-medium text-forest-600 border border-forest-300 px-4 py-2.5 rounded-full hover:bg-forest-50 transition-colors">
+                Send me a magic link ✉️
+              </button>
+              <div id="magic-login-sent" class="hidden mt-2">
+                <p class="text-sm text-forest-600">✉️ Check your inbox!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Magic link welcome toast -->
+        <div id="magic-welcome-toast" class="hidden fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-forest-600 text-white px-6 py-3 rounded-xl shadow-lg text-sm font-medium animate-bounce">
+          🐾 Welcome back! Your profile has been restored.
         </div>
       </div>
 
@@ -461,6 +512,9 @@ const toolSchema = {
   <!-- CLIENT-SIDE JAVASCRIPT -->
   <!-- ============================================================ -->
   <script>
+    // ===== Cloud API Config =====
+    const API_BASE = 'https://pawtracker-api.rob-henderson1209.workers.dev';
+
     // ===== Data & State =====
     const FOODS: any[] = (window as any).__PAW_FOODS || [];
     const BREEDS: any[] = (window as any).__PAW_BREEDS || [];
@@ -512,6 +566,13 @@ const toolSchema = {
     let selectedActivityType = '';
     let selectedDuration = 0;
 
+    // ===== Cloud Sync State =====
+    let cloudToken: string | null = localStorage.getItem('pawtracker-cloud-token');
+    let cloudEmail: string | null = localStorage.getItem('pawtracker-cloud-email');
+    let lastSyncTime: number = parseInt(localStorage.getItem('pawtracker-last-sync') || '0');
+    let autoSaveTimer: ReturnType<typeof setTimeout> | null = null;
+    let isSyncing = false;
+
     // ===== Helpers =====
     const $ = (s: string) => document.querySelector(s) as HTMLElement | null;
     const $$ = (s: string) => document.querySelectorAll(s);
@@ -547,9 +608,10 @@ const toolSchema = {
       return 'bg-red-500'; // red - way over
     }
 
-    // ===== Persistence =====
+    // ===== Persistence (localStorage) =====
     function saveProfile() {
       if (profile) localStorage.setItem('pawtracker-profile', JSON.stringify(profile));
+      scheduleAutoSave();
     }
     function loadProfile(): DogProfile | null {
       const d = localStorage.getItem('pawtracker-profile');
@@ -557,6 +619,7 @@ const toolSchema = {
     }
     function saveFoodLog() {
       localStorage.setItem(`pawtracker-food-${todayKey()}`, JSON.stringify(todayFoods));
+      scheduleAutoSave();
     }
     function loadFoodLog(): FoodEntry[] {
       const d = localStorage.getItem(`pawtracker-food-${todayKey()}`);
@@ -564,11 +627,196 @@ const toolSchema = {
     }
     function saveActivityLog() {
       localStorage.setItem(`pawtracker-activity-${todayKey()}`, JSON.stringify(todayActivities));
+      scheduleAutoSave();
     }
     function loadActivityLog(): ActivityEntry[] {
       const d = localStorage.getItem(`pawtracker-activity-${todayKey()}`);
       return d ? JSON.parse(d) : [];
     }
+
+    // ===== Cloud Sync Functions =====
+
+    async function apiCall(endpoint: string, body: any): Promise<any> {
+      try {
+        const resp = await fetch(`${API_BASE}${endpoint}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+        return await resp.json();
+      } catch (err) {
+        console.warn('API call failed:', endpoint, err);
+        return { success: false, error: 'Network error' };
+      }
+    }
+
+    async function cloudSave(): Promise<boolean> {
+      if (!cloudToken || !cloudEmail || !profile || isSyncing) return false;
+      isSyncing = true;
+      updateSyncUI('syncing');
+
+      try {
+        const result = await apiCall('/api/save', {
+          email: cloudEmail,
+          token: cloudToken,
+          profile,
+          foodLog: todayFoods,
+          activityLog: todayActivities,
+          date: todayKey(),
+        });
+
+        if (result.success) {
+          lastSyncTime = Date.now();
+          localStorage.setItem('pawtracker-last-sync', String(lastSyncTime));
+          updateSyncUI('synced');
+          return true;
+        } else {
+          console.warn('Cloud save failed:', result.error);
+          updateSyncUI('error');
+          return false;
+        }
+      } catch (err) {
+        console.warn('Cloud save error:', err);
+        updateSyncUI('error');
+        return false;
+      } finally {
+        isSyncing = false;
+      }
+    }
+
+    async function cloudLoad(): Promise<boolean> {
+      if (!cloudToken) return false;
+
+      try {
+        const result = await apiCall('/api/load', { token: cloudToken });
+        if (result.success) {
+          // Restore profile
+          if (result.profile) {
+            profile = result.profile;
+            saveProfileToLocal();
+          }
+          // Restore today's logs
+          const today = todayKey();
+          if (result.foodLog && result.foodLog[today]) {
+            todayFoods = result.foodLog[today];
+            localStorage.setItem(`pawtracker-food-${today}`, JSON.stringify(todayFoods));
+          }
+          if (result.activityLog && result.activityLog[today]) {
+            todayActivities = result.activityLog[today];
+            localStorage.setItem(`pawtracker-activity-${today}`, JSON.stringify(todayActivities));
+          }
+          if (result.email) {
+            cloudEmail = result.email;
+            localStorage.setItem('pawtracker-cloud-email', result.email);
+          }
+          lastSyncTime = Date.now();
+          localStorage.setItem('pawtracker-last-sync', String(lastSyncTime));
+          return true;
+        }
+        return false;
+      } catch (err) {
+        console.warn('Cloud load failed:', err);
+        return false;
+      }
+    }
+
+    function saveProfileToLocal() {
+      if (profile) localStorage.setItem('pawtracker-profile', JSON.stringify(profile));
+    }
+
+    function scheduleAutoSave() {
+      if (!cloudToken || !cloudEmail) return;
+      if (autoSaveTimer) clearTimeout(autoSaveTimer);
+      autoSaveTimer = setTimeout(() => {
+        cloudSave();
+      }, 30000); // 30 seconds debounce
+    }
+
+    function updateSyncUI(state: 'syncing' | 'synced' | 'error' | 'not-connected') {
+      const syncText = $('#sync-status-text');
+      const notConnected = $('#sync-not-connected');
+      const connected = $('#sync-connected');
+
+      if (state === 'not-connected') {
+        notConnected?.classList.remove('hidden');
+        connected?.classList.add('hidden');
+      } else {
+        notConnected?.classList.add('hidden');
+        connected?.classList.remove('hidden');
+      }
+
+      if (!syncText) return;
+
+      switch (state) {
+        case 'syncing':
+          syncText.textContent = '☁️ Syncing...';
+          syncText.className = 'text-xs text-bark-400 animate-pulse';
+          break;
+        case 'synced':
+          const ago = timeSince(lastSyncTime);
+          syncText.textContent = `☁️ Synced ${ago}`;
+          syncText.className = 'text-xs text-forest-600';
+          break;
+        case 'error':
+          syncText.textContent = '⚠️ Sync failed — data saved locally';
+          syncText.className = 'text-xs text-paw-600';
+          break;
+      }
+    }
+
+    function timeSince(ts: number): string {
+      if (!ts) return '';
+      const seconds = Math.floor((Date.now() - ts) / 1000);
+      if (seconds < 10) return 'just now';
+      if (seconds < 60) return `${seconds}s ago`;
+      if (seconds < 3600) return `${Math.floor(seconds / 60)}m ago`;
+      return `${Math.floor(seconds / 3600)}h ago`;
+    }
+
+    function updateCloudSaveSection() {
+      const promptEl = $('#cloud-prompt');
+      const syncedEl = $('#cloud-synced');
+      const magicLogin = $('#cloud-magic-login');
+      const saveSectionEl = $('#cloud-save-section');
+      const syncedEmailEl = $('#cloud-synced-email');
+      const lastSyncedEl = $('#cloud-last-synced');
+      const dogNameEl = $('#cloud-dog-name');
+
+      if (profile && dogNameEl) {
+        dogNameEl.textContent = profile.name;
+      }
+
+      if (cloudToken && cloudEmail) {
+        // Connected state
+        promptEl?.classList.add('hidden');
+        magicLogin?.classList.add('hidden');
+        syncedEl?.classList.remove('hidden');
+        if (syncedEmailEl) syncedEmailEl.textContent = `Linked to ${cloudEmail}`;
+        if (lastSyncedEl && lastSyncTime) {
+          lastSyncedEl.textContent = `Last synced: ${timeSince(lastSyncTime)}`;
+        }
+        updateSyncUI('synced');
+      } else {
+        // Not connected
+        promptEl?.classList.remove('hidden');
+        syncedEl?.classList.add('hidden');
+        updateSyncUI('not-connected');
+      }
+    }
+
+    // Update sync time display periodically
+    setInterval(() => {
+      if (cloudToken && cloudEmail && lastSyncTime) {
+        const syncText = $('#sync-status-text');
+        const lastSyncedEl = $('#cloud-last-synced');
+        if (syncText && !isSyncing) {
+          syncText.textContent = `☁️ Synced ${timeSince(lastSyncTime)}`;
+        }
+        if (lastSyncedEl) {
+          lastSyncedEl.textContent = `Last synced: ${timeSince(lastSyncTime)}`;
+        }
+      }
+    }, 30000);
 
     // ===== Populate Breed Dropdown =====
     function initBreeds() {
@@ -1178,43 +1426,191 @@ const toolSchema = {
       }
     });
 
-    // ===== Email Capture =====
-    $('#email-submit-btn')?.addEventListener('click', async () => {
-      const name = (document.getElementById('email-name') as HTMLInputElement).value.trim();
-      const email = (document.getElementById('email-address') as HTMLInputElement).value.trim();
+    // ===== Cloud Save / Magic Link Handlers =====
 
-      if (!name || !email || !email.includes('@')) {
-        alert('Please enter your name and a valid email address.');
+    // "Save to Cloud" button in profile summary
+    $('#cloud-save-btn')?.addEventListener('click', () => {
+      // Scroll to cloud save section
+      const section = $('#cloud-save-section');
+      if (section) section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // Focus email input
+      setTimeout(() => ($('#cloud-email') as HTMLInputElement)?.focus(), 500);
+    });
+
+    // "Access from another device" button in profile summary
+    $('#magic-link-btn')?.addEventListener('click', async () => {
+      if (!cloudEmail) return;
+      const result = await apiCall('/api/magic-link', { email: cloudEmail });
+      if (result.success) {
+        alert('✉️ Check your inbox for the magic link!');
+      }
+    });
+
+    // Cloud save submit
+    $('#cloud-save-submit-btn')?.addEventListener('click', async () => {
+      const emailInput = document.getElementById('cloud-email') as HTMLInputElement;
+      const email = emailInput?.value.trim();
+
+      if (!email || !email.includes('@')) {
+        alert('Please enter a valid email address.');
         return;
       }
 
-      // Save locally
-      const sub = { name, email, dogProfile: profile, timestamp: Date.now() };
-      localStorage.setItem('pawtracker-subscriber', JSON.stringify(sub));
-
-      // Try webhook (non-blocking)
-      try {
-        await fetch('https://hooks.wemakeanyapp.co.uk/webhook/pawtracker-signup', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(sub)
-        }).catch(() => {}); // Silently fail if webhook isn't set up yet
-      } catch (e) {
-        // Don't block on webhook failure
+      if (!profile) {
+        alert('Please set up your dog\'s profile first.');
+        return;
       }
 
-      // Show success
-      document.getElementById('email-form')?.classList.add('hidden');
-      document.getElementById('email-success')?.classList.remove('hidden');
+      // Show saving state
+      $('#cloud-email-form')?.classList.add('hidden');
+      $('#cloud-save-saving')?.classList.remove('hidden');
+
+      const result = await apiCall('/api/save', {
+        email,
+        profile,
+        foodLog: todayFoods,
+        activityLog: todayActivities,
+        date: todayKey(),
+      });
+
+      $('#cloud-save-saving')?.classList.add('hidden');
+
+      if (result.success && result.token) {
+        // Store cloud credentials
+        cloudToken = result.token;
+        cloudEmail = email;
+        localStorage.setItem('pawtracker-cloud-token', result.token);
+        localStorage.setItem('pawtracker-cloud-email', email);
+        lastSyncTime = Date.now();
+        localStorage.setItem('pawtracker-last-sync', String(lastSyncTime));
+
+        // Update UI
+        updateCloudSaveSection();
+        updateSyncUI('synced');
+
+        // Also try to send a magic link email for their records
+        apiCall('/api/magic-link', { email }).catch(() => {});
+      } else {
+        $('#cloud-email-form')?.classList.remove('hidden');
+        alert('Something went wrong. Please try again.');
+      }
     });
 
+    // "Send magic link" button (when already synced)
+    $('#send-magic-link-btn')?.addEventListener('click', async () => {
+      if (!cloudEmail) return;
+      const btn = $('#send-magic-link-btn') as HTMLButtonElement;
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+      }
+      const result = await apiCall('/api/magic-link', { email: cloudEmail });
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = '📱 Send magic link';
+      }
+      if (result.success) {
+        $('#magic-link-sent')?.classList.remove('hidden');
+        setTimeout(() => $('#magic-link-sent')?.classList.add('hidden'), 5000);
+      }
+    });
+
+    // Magic login (for returning users without token)
+    $('#magic-login-btn')?.addEventListener('click', async () => {
+      const emailInput = document.getElementById('magic-login-email') as HTMLInputElement;
+      const email = emailInput?.value.trim();
+      if (!email || !email.includes('@')) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+      const btn = $('#magic-login-btn') as HTMLButtonElement;
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+      }
+      const result = await apiCall('/api/magic-link', { email });
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = 'Send me a magic link ✉️';
+      }
+      if (result.success) {
+        $('#magic-login-sent')?.classList.remove('hidden');
+      }
+    });
+
+    // ===== Magic Link Verification (from URL) =====
+    async function handleMagicLink(): Promise<boolean> {
+      const params = new URLSearchParams(window.location.search);
+      const magicToken = params.get('magic');
+      if (!magicToken) return false;
+
+      // Clean URL
+      const cleanUrl = window.location.pathname;
+      window.history.replaceState({}, '', cleanUrl);
+
+      const result = await apiCall('/api/verify-magic', { magicToken });
+      if (result.success && result.token) {
+        // Store credentials
+        cloudToken = result.token;
+        cloudEmail = result.email;
+        localStorage.setItem('pawtracker-cloud-token', result.token);
+        localStorage.setItem('pawtracker-cloud-email', result.email);
+        lastSyncTime = Date.now();
+        localStorage.setItem('pawtracker-last-sync', String(lastSyncTime));
+
+        // Restore profile
+        if (result.profile) {
+          profile = result.profile;
+          saveProfileToLocal();
+        }
+
+        // Restore today's logs
+        const today = todayKey();
+        if (result.foodLog && result.foodLog[today]) {
+          todayFoods = result.foodLog[today];
+          localStorage.setItem(`pawtracker-food-${today}`, JSON.stringify(todayFoods));
+        }
+        if (result.activityLog && result.activityLog[today]) {
+          todayActivities = result.activityLog[today];
+          localStorage.setItem(`pawtracker-activity-${today}`, JSON.stringify(todayActivities));
+        }
+
+        // Show welcome toast
+        const toast = $('#magic-welcome-toast');
+        if (toast) {
+          toast.classList.remove('hidden');
+          setTimeout(() => toast.classList.add('hidden'), 4000);
+        }
+
+        return true;
+      } else {
+        alert('This magic link has expired or is invalid. Please request a new one.');
+        return false;
+      }
+    }
+
     // ===== Initialisation =====
-    function init() {
+    async function init() {
       initBreeds();
       initBrandFilter();
 
-      // Load existing profile
-      profile = loadProfile();
+      // Check for magic link in URL first
+      const restoredFromMagic = await handleMagicLink();
+
+      if (!restoredFromMagic) {
+        // Load existing profile from localStorage
+        profile = loadProfile();
+
+        // If we have a cloud token, try to load from cloud
+        if (cloudToken && !profile) {
+          const loaded = await cloudLoad();
+          if (!loaded) {
+            // Token might be invalid — clear it
+            // (but don't clear if we just have no profile yet)
+          }
+        }
+      }
+
       if (profile) {
         // Pre-fill form values for editing
         (document.getElementById('dog-name') as HTMLInputElement).value = profile.name;
@@ -1233,20 +1629,33 @@ const toolSchema = {
         showTracker();
       }
 
-      // Load today's logs
-      todayFoods = loadFoodLog();
-      todayActivities = loadActivityLog();
+      // Load today's logs (may already be loaded from cloud)
+      if (!restoredFromMagic) {
+        todayFoods = loadFoodLog();
+        todayActivities = loadActivityLog();
+      }
       renderFoodLog();
       renderActivityLog();
 
       // Show default food results
       searchFoods();
 
-      // Check if already subscribed
-      const existingSub = localStorage.getItem('pawtracker-subscriber');
-      if (existingSub) {
-        document.getElementById('email-form')?.classList.add('hidden');
-        document.getElementById('email-success')?.classList.remove('hidden');
+      // Update cloud save section UI
+      updateCloudSaveSection();
+
+      // If connected to cloud, do initial sync from cloud to get latest data
+      if (cloudToken && cloudEmail && !restoredFromMagic) {
+        cloudLoad().then(loaded => {
+          if (loaded && profile) {
+            // Re-render with cloud data
+            showProfileSummary();
+            todayFoods = loadFoodLog();
+            todayActivities = loadActivityLog();
+            renderFoodLog();
+            renderActivityLog();
+            updateSyncUI('synced');
+          }
+        }).catch(() => {});
       }
     }
 
