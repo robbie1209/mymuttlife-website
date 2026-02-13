@@ -7,7 +7,7 @@ readTime: "14 min read"
 publishDate: "2026-02-01"
 modifiedDate: "2026-02-11"
 slug: "best-dog-insurance-uk"
-image: "/images/blog-dog-insurance.jpg"
+image: "/images/poppy/poppy-happy-smile.jpg"
 ---
 
 

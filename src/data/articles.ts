@@ -45,7 +45,7 @@ export const articles: Article[] = [
     description: 'We compare the top UK dog insurance providers for 2026. Petplan, ManyPets, Agria and more — find the right cover for your dog without overpaying.',
     category: 'Insurance & Finance',
     emoji: '🛡️',
-    image: '/images/dog-vet-insurance.jpg',
+    image: '/images/poppy/poppy-fence-portrait.jpg',
     readTime: '14 min read',
     publishDate: '2026-02-01',
     modifiedDate: '2026-02-11',
