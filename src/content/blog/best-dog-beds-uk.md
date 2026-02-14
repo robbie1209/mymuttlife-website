@@ -195,4 +195,8 @@ For destructive chewers, avoid plush beds entirely. Go for an elevated bed (Cool
 
 ---
 
+> 🛒 **Browse Our Dog Bed Collection** — We've curated a range of comfortable, durable dog beds in [our shop](https://mymuttlife.co.uk). From bolster styles to orthopaedic options, find the perfect bed for your pup. [Shop dog beds →](https://mymuttlife.co.uk)
+
+---
+
 **Affiliate Disclosure:** This article contains affiliate links. If you purchase through our links, we may earn a small commission at no extra cost to you. We only recommend products we genuinely believe in.

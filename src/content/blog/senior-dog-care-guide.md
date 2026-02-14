@@ -302,8 +302,6 @@ Give them the care they deserve. They've certainly earned it.
 
 *Note: This guide is for informational purposes. Always consult your vet for advice specific to your dog's needs.*
 
-**SEO Target Keywords:** senior dog care UK, caring for older dogs, elderly dog health, senior dog food UK, dog joint supplements UK, when is a dog senior, older dog exercise, canine cognitive dysfunction
-**Internal Links to Add:** Best dog food for Labradors (for breed-specific senior feeding), Best joint supplements for dogs UK
-**Affiliate Opportunities:** YuMOVE, Butternut Box, orthopaedic beds (Amazon Associates), Omlet Topology bed
+---
 
-*Draft created: February 7, 2026*
+> 🛒 **Comfort for Senior Dogs** — Orthopaedic beds, gentle toys, and comforting accessories to help your older dog enjoy their golden years. [Shop senior dog comfort at My Mutt Life →](https://mymuttlife.co.uk)

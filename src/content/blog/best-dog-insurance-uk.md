@@ -275,18 +275,10 @@ Whatever you choose, having *some* cover is always better than none. Your dog ca
 
 **Related Reading:**
 - [Best Dog Food for Labrador Retrievers UK 2026](/best-dog-food-labrador-retrievers-uk-2026)
-- [Best Dog Food for German Shepherds UK 2026](/best-dog-food-german-shepherds-uk-2026)
-- [Best Joint Supplements for Dogs UK 2026](/best-joint-supplements-dogs-uk-2026)
-- [Senior Dog Care: The Complete UK Guide](/senior-dog-care-complete-uk-guide-2026)
+- [Best Dog Food for German Shepherds UK 2026](/blog/best-dog-food-german-shepherds-uk)
+- [Best Joint Supplements for Dogs UK 2026](/blog/best-joint-supplements-dogs-uk)
+- [Senior Dog Care: The Complete UK Guide](/blog/senior-dog-care-guide)
 
-**SEO Target Keywords:**
-- best dog insurance UK
-- dog insurance compared UK 2026
-- cheapest dog insurance UK
-- lifetime dog insurance UK
-- pet insurance for older dogs UK
-- ManyPets vs Petplan
-- is dog insurance worth it UK
+---
 
-
-**Suggested URL slug:** /best-dog-insurance-uk-compared-2026
+> 🐾 **While you're protecting your dog's health** — check out our curated collection of dog accessories, from comfort beds to walking essentials. [Visit the My Mutt Life shop →](https://mymuttlife.co.uk)

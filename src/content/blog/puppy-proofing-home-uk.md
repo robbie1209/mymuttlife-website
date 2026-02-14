@@ -219,6 +219,12 @@ Spend a Saturday afternoon going room by room with this checklist. It's a few ho
 
 Your puppy doesn't know what's dangerous. That's your job. Make their world safe, and they'll make your world wonderful.
 
+---
+
+> 🛒 **Shop Puppy Essentials** — Training clickers, chew-proof toys, and cosy puppy beds — we've got everything to help your new pup settle in safely. [Browse puppy gear at My Mutt Life →](https://mymuttlife.co.uk)
+
+---
+
 **Related Reading:**
 - [How Much Exercise Does Your Dog Need? Breed-by-Breed Guide](/blog/dog-exercise-breed-guide/)
 - [Best Dog Beds UK 2026: Top Picks for Every Breed](/blog/best-dog-beds-uk/)

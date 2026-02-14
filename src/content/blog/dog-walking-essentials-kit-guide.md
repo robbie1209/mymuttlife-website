@@ -199,4 +199,10 @@ Start with the non-negotiables, add extras as you go, and keep your kit bag read
 
 **Got a walking essential we've missed? Drop us a comment below!**
 
+---
+
+> 🛒 **Get Kitted Out for Walks** — Our shop has everything from leads and harnesses to treat bags and portable water bowls. All hand-picked, all tested with real dogs. [Browse walking gear at My Mutt Life →](https://mymuttlife.co.uk)
+
+---
+
 *Disclosure: This post contains affiliate links. If you purchase through our links, we may earn a small commission at no extra cost to you. We only recommend products we genuinely believe in.*

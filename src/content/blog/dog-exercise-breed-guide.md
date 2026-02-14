@@ -179,8 +179,6 @@ And remember: **mental exercise counts too.** A 15-minute training session can t
 
 *Have a question about your dog's exercise needs? Drop us a message — we love hearing from fellow dog owners.*
 
-**Internal Notes:**
-- Affiliate links: Amazon Associates for walking gear, GPS trackers (Tractive, Apple AirTag holders)
-- Could link to future mymuttlife product range if Shopify store develops
-- Natural follow-up articles: "Best Dog Harnesses UK 2026", "GPS Trackers for Dogs UK Compared"
-- Ties into Rob's dog fitness app concept (MyMuttLife = exercise tracking)
+---
+
+> 🛒 **Gear Up for Active Dogs** — From fetch toys and training clickers to durable leads for long hikes, our shop has the essentials for keeping your dog fit and happy. [Shop exercise gear at My Mutt Life →](https://mymuttlife.co.uk)

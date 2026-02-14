@@ -1,0 +1,55 @@
+---
+interface Props {
+  heading?: string;
+  text?: string;
+  ctaText?: string;
+  ctaUrl?: string;
+  variant?: 'default' | 'compact';
+}
+
+const {
+  heading = "Shop My Mutt Life 🛒",
+  text = "We hand-pick dog accessories that actually work — beds, coats, toys, leads and more. Quality gear for real dogs.",
+  ctaText = "Browse the Shop",
+  ctaUrl = "https://mymuttlife.co.uk",
+  variant = 'default'
+} = Astro.props;
+---
+
+{variant === 'default' ? (
+  <div class="my-8 rounded-xl border-2 border-forest-200 bg-gradient-to-r from-forest-50 to-cream-50 p-6 sm:p-8">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+      <div class="flex-1">
+        <h3 class="text-lg font-bold text-forest-800 mb-1" style="font-family: var(--font-heading)">{heading}</h3>
+        <p class="text-bark-600 text-sm leading-relaxed">{text}</p>
+      </div>
+      <a
+        href={ctaUrl}
+        target="_blank"
+        rel="noopener"
+        class="inline-flex items-center gap-2 px-5 py-2.5 bg-forest-600 text-white rounded-lg font-medium text-sm hover:bg-forest-700 transition-colors whitespace-nowrap"
+      >
+        {ctaText}
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+) : (
+  <div class="my-6 rounded-lg border border-forest-200 bg-forest-50 px-5 py-4">
+    <div class="flex items-center justify-between gap-4 flex-wrap">
+      <p class="text-bark-700 text-sm">
+        <span class="font-semibold text-forest-700">🛒 {heading}</span> — {text}
+      </p>
+      <a
+        href={ctaUrl}
+        target="_blank"
+        rel="noopener"
+        class="inline-flex items-center gap-1.5 text-sm font-medium text-forest-700 hover:text-forest-800 underline underline-offset-2"
+      >
+        {ctaText} →
+      </a>
+    </div>
+  </div>
+)}

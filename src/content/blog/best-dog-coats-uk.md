@@ -287,3 +287,7 @@ Happy walking, whatever the weather! 🐕🌧️
 ---
 
 *Looking for more gear guides? Check out our [Dog Walking Essentials Kit Guide](/blog/dog-walking-essentials-kit-guide) and [Best Dog Beds UK 2026](/blog/best-dog-beds-uk).*
+
+---
+
+> 🛒 **Shop Dog Coats & Accessories** — Browse our hand-picked collection of waterproof coats, fleece layers, and cold-weather gear for dogs of all sizes. [Visit the My Mutt Life shop →](https://mymuttlife.co.uk)

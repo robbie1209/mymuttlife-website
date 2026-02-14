@@ -255,27 +255,12 @@ Start early, stay consistent, and remember — you know your dog best. What work
 
 Your dog is counting on you to make fireworks season bearable. With this guide, you've got everything you need to do exactly that. 🐾
 
-*Got a question about keeping your dog calm during fireworks? Drop us a comment below, or check out our other guides on [dog anxiety](/anxiety) and [seasonal pet care](/seasonal-care).*
+*Got a question about keeping your dog calm during fireworks? Drop us a comment below, or check out our guides on [senior dog care](/blog/senior-dog-care-guide) and [dog insurance](/blog/best-dog-insurance-uk).*
+
+---
+
+> 🛒 **Comfort for Anxious Dogs** — Calming toys, cosy beds, and comfort accessories to help your dog through stressful times. [Browse the My Mutt Life shop →](https://mymuttlife.co.uk)
+
+---
 
 **Disclosure:** This article contains affiliate links. If you purchase through our links, we may earn a small commission at no extra cost to you. We only recommend products we genuinely believe in.
-
-### SEO Notes (for Rob — delete before publishing)
-
-- Primary: "how to keep dog calm during fireworks" / "dogs and fireworks UK"
-- Secondary: "best calming products for dogs fireworks" / "dog firework anxiety"
-- Long-tail: "how to help dog with firework phobia UK" / "ADAPTIL for fireworks"
-
-
-**Internal linking opportunities:**
-- Link to senior dog care guide (older dogs may be more sensitive)
-- Link to joint supplements guide (YuMOVE crossover)
-- Link to dog insurance guide (cover for behavioural treatment)
-
-**Affiliate opportunities:**
-- Amazon Associates: ADAPTIL, ThunderShirt, YuMOVE, Kong, snuffle mats
-- Direct: Adaptil.co.uk, YuMOVE referral programme
-- Pet insurance: Some policies cover behavioural treatment
-
-**Publishing timing:** Best to publish in August/September for SEO — gives Google time to index before fireworks season. But evergreen enough to publish any time (people search year-round after bad experiences).
-
-**Featured snippet opportunity:** The checklist section is formatted perfectly for Google's featured snippets. Consider adding schema markup.

@@ -271,9 +271,15 @@ Whatever you choose, look for:
 
 Your German Shepherd will thank you with energy, a shiny coat, and years of loyal companionship.
 
+---
+
+> 🛒 **Complete the care package** — Slow feeder bowls to help with digestion, comfort beds for those big joints, and more. [Browse German Shepherd essentials at My Mutt Life →](https://mymuttlife.co.uk)
+
+---
+
 **Related Articles:**
-- [Best Joint Supplements for Dogs UK 2026](/best-joint-supplements-dogs-uk)
-- [Best Dog Food for Labrador Retrievers UK 2026](/best-dog-food-labrador-retrievers-uk)
-- [Senior Dog Care: A Complete Guide](/senior-dog-care-guide)
+- [Best Joint Supplements for Dogs UK 2026](/blog/best-joint-supplements-dogs-uk)
+- [Best Dog Food for Labradors UK 2026](/blog/best-dog-food-labradors-uk)
+- [Senior Dog Care: A Complete Guide](/blog/senior-dog-care-guide)
 
 *This post contains affiliate links. If you purchase through our links, we may earn a small commission at no extra cost to you. This helps us keep creating helpful content for dog owners.*

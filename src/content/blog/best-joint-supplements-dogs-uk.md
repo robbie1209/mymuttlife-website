@@ -211,7 +211,13 @@ Whatever you choose, the key is consistency. Daily supplementation over months a
 
 **Disclosure:** This post contains affiliate links. If you purchase through our links, we may earn a small commission at no extra cost to you. This helps support the site and allows us to keep creating helpful content for dog owners.
 
+---
+
+> 🐾 **Support the whole dog** — Pair joint supplements with the right bed and gentle exercise gear. Browse our curated dog accessories at [mymuttlife.co.uk →](https://mymuttlife.co.uk)
+
+---
+
 **Related Articles:**
-- Best Dog Food for Labrador Retrievers UK
-- How Much Exercise Does My Dog Need? Complete Guide by Breed
-- Senior Dog Care: 10 Ways to Keep Your Older Dog Comfortable
+- [Best Dog Food for Labradors UK 2026](/blog/best-dog-food-labradors-uk)
+- [How Much Exercise Does Your Dog Need?](/blog/dog-exercise-breed-guide)
+- [Senior Dog Care: The Complete Guide](/blog/senior-dog-care-guide)

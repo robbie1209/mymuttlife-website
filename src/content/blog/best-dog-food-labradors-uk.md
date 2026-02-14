@@ -258,7 +258,13 @@ Don't be swayed by marketing – focus on ingredient quality and your dog's indi
 Your Lab will thank you with years of loyal companionship, muddy paw prints, and unconditional love. Feed them well.
 
 
+---
+
+> 🛒 **While you're sorting their diet** — pair it with the right gear. Slow feeder bowls, comfort beds, and more for Labs in [our shop](https://mymuttlife.co.uk). [Browse the My Mutt Life shop →](https://mymuttlife.co.uk)
+
+---
+
 **Related articles:**
-- [Best Joint Supplements for Dogs UK 2026](/best-joint-supplements-for-dogs-uk-2026)
-- [How Much Exercise Does a Labrador Need?](/labrador-exercise-guide)
-- [Labrador Weight Chart: Is Your Lab a Healthy Weight?](/labrador-weight-chart)
+- [Best Joint Supplements for Dogs UK 2026](/blog/best-joint-supplements-dogs-uk)
+- [How Much Exercise Does Your Dog Need?](/blog/dog-exercise-breed-guide)
+- [Senior Dog Care: The Complete Guide](/blog/senior-dog-care-guide)
