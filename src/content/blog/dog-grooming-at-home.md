@@ -1,13 +1,13 @@
 ---
 title: "How to Groom Your Dog at Home: Complete UK Guide (2026)"
-description: "Whether you've got a slobbery Labrador, a fluffy Poodle mix, or a wire-haired Border Terrier, grooming your dog at home is one of the best habits you can b..."
-category: "Dog Gear"
-emoji: "🎒"
+description: "Everything you need to groom your dog at home — from brushing and bathing to nail trimming and ear cleaning. Breed-specific tips for Labradors, Poodles, Spaniels, and more."
+category: "Dog Care"
+emoji: "✂️"
 readTime: "21 min read"
 publishDate: "2026-02-23"
 modifiedDate: "2026-02-23"
 slug: "dog-grooming-at-home"
-image: "/images/poppy/poppy-smiling-kitchen.jpg"
+image: "/images/poppy/poppy-licking-lips.jpg"
 ---
 
 

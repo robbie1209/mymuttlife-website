@@ -7,7 +7,7 @@ readTime: "14 min read"
 publishDate: "2026-02-17"
 modifiedDate: "2026-02-17"
 slug: "best-dog-harnesses-uk"
-image: "/images/blog/best-dog-harnesses-uk.jpg"
+image: "/images/poppy/poppy-happy-smile.jpg"
 ---
 
 Whether you've got a tiny terrier who thinks he's a sled dog or a laid-back Labrador who ambles along sniffing every lamppost, the right harness makes walkies better for both of you. Safer, more comfortable, and — if your dog's a puller — a whole lot less stressful on your shoulders.
