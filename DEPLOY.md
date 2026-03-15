@@ -1,10 +1,29 @@
 # MyMuttLife — Deployment Guide
 
-## Current State
-- **Build:** ✅ 25 pages, 18 blog articles, sitemap generated
+## Current State (Updated 2026-03-15)
+- **Build:** ✅ 57 pages, 50 blog articles, sitemap generated
+- **Live staging URL:** https://mutt.wemakeanyapp.co.uk ✅ (Cloudflare tunnel, port 4325)
 - **Local dev:** `npm run dev` → http://localhost:4321
-- **Production build:** `npm run build` → `/dist/`
-- **Domain to point:** `mymuttlife.co.uk`
+- **Production serve:** `serve dist -l 4325` (auto-starts via LaunchAgent)
+- **Domain to point:** `mymuttlife.co.uk` ← **ONLY thing left for Rob to do!**
+
+## ✅ Already Done (Mar 15 2026)
+- 50 articles imported and built (was 18)
+- GA4 analytics scaffolding added (add `PUBLIC_GA4_ID=G-XXXXXXX` to .env)
+- LaunchAgent created — site auto-starts on reboot at port 4325
+- Cloudflare tunnel route active: mutt.wemakeanyapp.co.uk → port 4325
+- DNS CNAME created in Cloudflare for mutt.wemakeanyapp.co.uk
+- Remote CF tunnel config updated (version 30)
+
+## 🎯 Rob's 3-Step Launch Checklist
+1. **Point mymuttlife.co.uk domain** — at your registrar (e.g. Namecheap/GoDaddy/123-reg):
+   - Add CNAME: `mymuttlife.co.uk` → `44ef7ccd-54ec-420e-beb3-43a2d3f4dc61.cfargotunnel.com`
+   - (or if it's already on Cloudflare DNS: add CNAME mutt → same target, then alias root)
+2. **Set up GA4** — go to analytics.google.com → create property → get Measurement ID (G-XXXXXXXXXX)
+   - Add to `.env` file: `PUBLIC_GA4_ID=G-XXXXXXXXXX` then `npm run build` 
+3. **Submit to Google Search Console** — add property → submit sitemap URL
+
+Everything else is done and running.
 
 ---
 

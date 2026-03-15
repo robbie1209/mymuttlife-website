@@ -64,6 +64,21 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : new URL(ogImage, site
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
+  <!-- Google Analytics 4 -->
+  <!-- Replace G-XXXXXXXXXX with your GA4 Measurement ID from analytics.google.com -->
+  <!-- Or use PUBLIC_GA4_ID in your .env file: PUBLIC_GA4_ID=G-XXXXXXXXXX -->
+  {import.meta.env.PUBLIC_GA4_ID && (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA4_ID}`}></script>
+      <script define:vars={{ gaId: import.meta.env.PUBLIC_GA4_ID }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', gaId, { anonymize_ip: true });
+      </script>
+    </>
+  )}
+
   <!-- Schema.org - WebSite -->
   {!article && (
     <script type="application/ld+json" set:html={JSON.stringify({
