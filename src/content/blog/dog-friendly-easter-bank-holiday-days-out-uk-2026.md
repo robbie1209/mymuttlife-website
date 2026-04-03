@@ -1,8 +1,8 @@
 ---
 title: "Dog-Friendly Easter Days Out UK 2026 — Best Bank Holiday Walks & Activities"
 description: "Planning a dog-friendly Easter break? We've rounded up the best dog-friendly walks, days out, beaches, and National Trust spots open over the Easter bank holiday 2026 — plus what to watch out for."
-category: "Dog Gear"
-emoji: "🐣"
+category: "Adventures & Travel"
+emoji: "🐾"
 readTime: "17 min read"
 publishDate: "2026-04-03"
 modifiedDate: "2026-04-03"
